@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import PendingStudentRegTable from './PendingStudentRegTable';
+import Datatable from './Datatable';
 import { Building, People, Clipboard, Wallet } from 'react-bootstrap-icons';
 
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card, Col, Dropdown, Row } from 'react-bootstrap';
 import '../../../src/assets/scss/style.scss';
 import Calendar from './Calendar';
 
@@ -80,18 +80,25 @@ const Dashboard = () => {
                   className="col-lg-6 col-sm-6 row-in-br d-flex align-items-center px-5"
                   style={{ justifyContent: 'space-between' }}
                 >
-                  <div className="">
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                    }}
+                  >
                     <Clipboard
                       style={{
                         padding: '20px',
                         background: 'rgba(255,0,0,0.5)',
                         borderRadius: '20px',
-                        margin: '20px',
+                        marginBottom: '10px',
+                        marginRight: '10px',
                       }}
                       size={70}
                       color="white"
                     />
-                    <h4>Bounced SMS</h4>
+                    <h5 class="text-muted pr-5">Bounced SMS</h5>
                   </div>
                   <div>
                     <h2>{bouncedSMS}</h2>
@@ -103,18 +110,25 @@ const Dashboard = () => {
                   className="col-lg-6 col-sm-6 row-in-br d-flex align-items-center px-5"
                   style={{ justifyContent: 'space-between' }}
                 >
-                  <div className="">
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                    }}
+                  >
                     <Wallet
                       style={{
                         padding: '20px',
                         background: 'rgba(0,155,0,0.5)',
                         borderRadius: '20px',
-                        margin: '20px',
+                        marginBottom: '10px',
+                        marginRight: '10px',
                       }}
                       size={70}
                       color="white"
                     />
-                    <h4>Outbound SMS</h4>
+                    <h5 class="text-muted pr-5">Outbound SMS</h5>
                   </div>
                   <div>
                     <h2>{outboundSMS}</h2>
@@ -130,7 +144,7 @@ const Dashboard = () => {
       <Row>
         {/* Table of details */}
         <div className="col-md-8">
-          <PendingStudentRegTable />
+          <Datatable />
         </div>
 
         {/* Calendar*/}

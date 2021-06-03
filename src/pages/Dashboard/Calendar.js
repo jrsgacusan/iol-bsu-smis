@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Modal, Form } from 'react-bootstrap';
+import { Card, Button, Modal, Form, Container } from 'react-bootstrap';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -87,24 +87,36 @@ const Calendar = () => {
       </Modal>
       <Card style={{ border: 'none' }}>
         <Card.Body>
-          <FullCalendar
-            plugins={[
-              dayGridPlugin,
-              interactionPlugin,
-              timeGridPlugin,
-              bootstrapPlugin,
-            ]}
-            initialView="timeGridWeek"
-            themeSystem="bootstrap"
-            dateClick={handleDayClick}
-            selectable={true}
-            editable={true}
-            headerToolbar={{
-              left: 'prev,next,today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay',
-            }}
-          />
+          <div style={{ flexGrow: 1 }}>
+            <FullCalendar
+              plugins={[
+                dayGridPlugin,
+                interactionPlugin,
+                timeGridPlugin,
+                bootstrapPlugin,
+              ]}
+              expandRows={true}
+              handleWindowResize={false}
+              initialView="timeGridWeek"
+              themeSystem="bootstrap"
+              dateClick={handleDayClick}
+              selectable={true}
+              editable={true}
+              headerToolbar={{
+                left: 'prev,next,today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay',
+              }}
+              buttonText={{
+                today: 'Today',
+                month: 'Month',
+                day: 'Day',
+                week: 'Week',
+              }}
+              selectMirror={true}
+              dayMaxEvents={true}
+            />
+          </div>
         </Card.Body>
       </Card>
     </>
