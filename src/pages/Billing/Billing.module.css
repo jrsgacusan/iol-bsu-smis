@@ -1,0 +1,59 @@
+.second-row-header {
+  background: #2cabe3;
+  height: 90px;
+  text-align: center;
+  align-items: center;
+  border-bottom: none;
+  position: relative;
+  color: white;
+}
+
+.second-row-card h4 {
+  font-weight: bold;
+}
+
+.second-row-header .wallet {
+  margin-top: 15px;
+}
+
+.add-new-transaction {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.add-new-transaction .icon {
+  padding: 18px;
+  border-radius: 100%;
+  background: #53e69d;
+  color: white;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.add-new-transaction p {
+  cursor: pointer;
+  margin-top: 13px;
+  color: black;
+}
+.add-new-transaction p:hover {
+  color: #2cabe3;
+}
+
+.date-picker-btn {
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px;
+  border: 2px solid #f6f7f8;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  text-align: start;
+}
+
+@media screen and (max-width: 830px) {
+  .second-row-header p {
+    display: none;
+  }
+}

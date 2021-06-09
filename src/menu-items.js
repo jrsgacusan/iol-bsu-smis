@@ -15,6 +15,14 @@ export default {
           icon: 'feather icon-sidebar',
         },
         {
+          id: 'billing',
+          title: 'Billing',
+          type: 'item',
+          url: '/billing',
+          classes: 'nav-item',
+          icon: 'feather icon-sidebar',
+        },
+        {
           id: 'signin-1',
           title: 'Sign in',
           type: 'item',
