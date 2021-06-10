@@ -11,6 +11,10 @@ import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap/dist/css/bootstrap.css';
 // you will also need the css that comes with bootstrap-daterangepicker
 import 'bootstrap-daterangepicker/daterangepicker.css';
+import AddComponent from '../../components/AddComponent';
+import CardContainer from '../../components/CardContainer';
+import { BILLING_DUMMY_DATA } from '../../dummy-data/billing';
+import DeleteBtnWithAlert from '../../components/DeleteBtnWithAlert';
 
 const DUMMY_MENU = [
   {
@@ -27,6 +31,45 @@ const DUMMY_MENU = [
   },
 ];
 
+const columns = [
+  {
+    label: 'Payment ID',
+    field: 'paymentId',
+    attributes: {
+      'aria-controls': 'DataTable',
+      'aria-label': 'paymentId',
+    },
+  },
+  {
+    label: 'Date',
+    field: 'date',
+  },
+  {
+    label: 'Student ID',
+    field: 'studentId',
+  },
+  {
+    label: 'Transaction Type',
+    field: 'transactionType',
+  },
+  {
+    label: 'Description',
+    field: 'description',
+  },
+  {
+    label: 'Amount',
+    field: 'amount',
+  },
+  {
+    label: 'Balance',
+    field: 'balance',
+  },
+  {
+    label: 'Action',
+    field: 'action',
+  },
+];
+
 const Billing = () => {
   const [collected, setcollected] = useState(1000000);
   const [collectibles, setcollectibles] = useState(2000000);
@@ -37,60 +80,19 @@ const Billing = () => {
   const [startDate, setstartDate] = useState('01-01-2021');
   const [endDate, setendDate] = useState('01-01-2021');
   const [dataTable, setDataTable] = useState({
-    columns: [
-      {
-        label: 'Payment ID',
-        field: 'paymentId',
-        attributes: {
-          'aria-controls': 'DataTable',
-          'aria-label': 'paymentId',
-        },
-      },
-      {
-        label: 'Date',
-        field: 'date',
-      },
-      {
-        label: 'Student ID',
-        field: 'studentId',
-      },
-      {
-        label: 'Transaction Type',
-        field: 'transactionType',
-      },
-      {
-        label: 'Description',
-        field: 'description',
-      },
-      {
-        label: 'Amount',
-        field: 'amount',
-      },
-      {
-        label: 'Balance',
-        field: 'balance',
-      },
-      {
-        label: 'Action',
-        field: 'action',
-      },
-    ],
-    rows: [
-      {
-        paymentId: '96',
-        date: '	2020-07-02 09:51:50',
-        studentId: '10002',
-        transactionType: 'Billing',
-        description: 'Grade 11',
-        amount: 200,
-        balance: 10000,
-        action: (
-          <Button variant="danger" onClick={() => alert('Button clicked')}>
-            <Trash color="white" />
-          </Button>
-        ),
-      },
-    ],
+    columns: columns,
+    rows: BILLING_DUMMY_DATA.map((item) => {
+      return {
+        paymentId: item.paymentId,
+        date: item.date,
+        studentId: item.studentId,
+        transactionType: item.transactionType,
+        description: item.description,
+        amount: item.amount,
+        balance: item.balance,
+        action: <DeleteBtnWithAlert action={() => alert('Perform delete')} />,
+      };
+    }),
   });
 
   const handleSelect = (e) => {
@@ -167,86 +169,78 @@ const Billing = () => {
       {/* Second Row */}
       <Row>
         <Col>
-          <Card className={classes['second-row-card']}>
-            <Card.Header
-              style={{ background: '#2cabe3' }}
-              className={classes['second-row-header']}
-            >
-              <Wallet2 size={30} color="white" className={classes.wallet} />
-              <p>BILLING</p>
-            </Card.Header>
-            <Card.Body>
-              <Row>
+          <CardContainer title="Billing">
+            <Row>
+              <Col>
+                <h4 className="text-center" style={{ fontWeight: 'bold' }}>
+                  Search Student
+                </h4>
+                <CustomDropDown
+                  placeHolder="Search student"
+                  menuItems={menuItems}
+                  handleSelect={handleSelect}
+                  selectedItem={selectedStudent}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col className="text-center">
+                <h4 className="text-center" style={{ fontWeight: 'bold' }}>
+                  Sort by Date
+                </h4>
+                <DateRangePicker
+                  onCallback={handleCallback}
+                  initialSettings={{
+                    startDate: startDate,
+                    endDate: endDate,
+                  }}
+                >
+                  <button className={classes['date-picker-btn']}>
+                    {startDate}/{endDate}
+                  </button>
+                </DateRangePicker>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="text-center">
+                {' '}
+                <Button
+                  className="text-center"
+                  style={{
+                    marginTop: '10px',
+                    background: '#707cd2',
+                    border: 'none',
+                  }}
+                  onClick={() => {
+                    setisTableShown(true);
+                  }}
+                >
+                  View{' '}
+                </Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <AddComponent
+                  title="Add New Transaction"
+                  onClick={() => {
+                    setisModalShown(true);
+                  }}
+                />
+              </Col>
+            </Row>
+            {isTableShown && (
+              <Row style={{ marginTop: '10px' }}>
                 <Col>
-                  <h4 className="text-center">Search Student</h4>
-                  <CustomDropDown
-                    placeHolder="Search student"
-                    menuItems={menuItems}
-                    handleSelect={handleSelect}
-                    selectedItem={selectedStudent}
+                  <Datatable
+                    datatable={dataTable}
+                    title="Transactions"
+                    exportToCsv={true}
                   />
                 </Col>
               </Row>
-              <Row>
-                <Col className="text-center">
-                  <h4 className="text-center">Sort by Date</h4>
-                  <DateRangePicker
-                    onCallback={handleCallback}
-                    initialSettings={{
-                      startDate: startDate,
-                      endDate: endDate,
-                    }}
-                  >
-                    <button className={classes['date-picker-btn']}>
-                      {startDate}/{endDate}
-                    </button>
-                  </DateRangePicker>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="text-center">
-                  {' '}
-                  <Button
-                    className="text-center"
-                    style={{
-                      marginTop: '10px',
-                      background: '#707cd2',
-                      border: 'none',
-                    }}
-                    onClick={() => {
-                      setisTableShown(true);
-                    }}
-                  >
-                    View{' '}
-                  </Button>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <span
-                    className={classes['add-new-transaction']}
-                    onClick={() => {
-                      setisModalShown(true);
-                    }}
-                  >
-                    <PlusLg className={classes.icon} size={50} />
-                    <p>Add new Transaction</p>
-                  </span>
-                </Col>
-              </Row>
-              {isTableShown && (
-                <Row style={{ marginTop: '10px' }}>
-                  <Col>
-                    <Datatable
-                      datatable={dataTable}
-                      title="Transactions"
-                      exportToCsv={true}
-                    />
-                  </Col>
-                </Row>
-              )}
-            </Card.Body>
-          </Card>
+            )}
+          </CardContainer>
         </Col>
       </Row>
     </>

@@ -1,0 +1,17 @@
+.div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.div h3 {
+  font-size: 21px;
+}
+
+.data-table-container {
+  margin-top: 10px;
+  box-shadow: none;
+  width: 100%;
+}

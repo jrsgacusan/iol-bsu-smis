@@ -6,6 +6,45 @@ import { Card, Col, Row } from 'react-bootstrap';
 import '../../../src/assets/scss/style.scss';
 import Calendar from './Calendar';
 import classes from './Dashboard.module.css';
+import { DASHBOARD_DUMMY_DATA } from '../../dummy-data/dashboard';
+const columns = [
+  {
+    label: 'ID',
+    field: 'id',
+    attributes: {
+      'aria-controls': 'DataTable',
+      'aria-label': 'ID',
+    },
+  },
+  {
+    label: 'LRN',
+    field: 'lrn',
+  },
+  {
+    label: 'Department Name',
+    field: 'deptName',
+  },
+  {
+    label: 'Name',
+    field: 'name',
+    sort: 'asc',
+  },
+  {
+    label: 'Contact Number',
+    field: 'contactNum',
+    sort: 'disabled',
+  },
+  {
+    label: 'Email',
+    field: 'email',
+    sort: 'disabled',
+  },
+  {
+    label: 'Action',
+    field: 'action',
+    sort: 'disabled',
+  },
+];
 
 const Dashboard = () => {
   const [departmentCount, setDepartmentCount] = useState(0);
@@ -14,94 +53,18 @@ const Dashboard = () => {
   const [bouncedSMS, setBouncedSMS] = useState(0);
   const [outboundSMS, setOutboundSMS] = useState(0);
   const [datatable, setDatatable] = useState({
-    columns: [
-      {
-        label: 'ID',
-        field: 'id',
-        attributes: {
-          'aria-controls': 'DataTable',
-          'aria-label': 'ID',
-        },
-      },
-      {
-        label: 'LRN',
-        field: 'lrn',
-      },
-      {
-        label: 'Department Name',
-        field: 'deptName',
-      },
-      {
-        label: 'Name',
-        field: 'name',
-        sort: 'asc',
-      },
-      {
-        label: 'Contact Number',
-        field: 'contactNum',
-        sort: 'disabled',
-      },
-      {
-        label: 'Email',
-        field: 'email',
-        sort: 'disabled',
-      },
-      {
-        label: 'Action',
-        field: 'action',
-        sort: 'disabled',
-      },
-    ],
-    rows: [
-      {
-        id: '1',
-        lrn: '090012',
-        deptName: 'CITCS',
-        name: 'Juel Rei S. Gacusan',
-        contactNum: 9773757020,
-        email: 'juelreigacusan22@gmail.com',
-        clickEvent: () => {
-          console.log(`Clicked 1`);
-        },
-        action: 'None',
-      },
-      {
-        id: '2',
-        lrn: '090013',
-        deptName: 'CCJE',
-        name: 'Lebron James',
-        contactNum: 9772836465,
-        email: 'jebronlames@gmail.com',
-        clickEvent: () => {
-          console.log(`Clicked 2`);
-        },
-        action: 'None',
-      },
-      {
-        id: '3',
-        lrn: '23155123',
-        deptName: 'Janitor Dept',
-        name: 'Kobe Bryant',
-        contactNum: 9772836465,
-        email: 'janedoe@gmail.com',
-        clickEvent: () => {
-          console.log(`Clicked`);
-        },
-        action: 'None',
-      },
-      {
-        id: '22',
-        lrn: '09002113',
-        deptName: 'CCJE',
-        name: 'James Bond',
-        contactNum: 9772836465,
-        email: 'ass@gmail.com',
-        clickEvent: () => {
-          console.log(`Clicked`);
-        },
+    columns: columns,
+    rows: DASHBOARD_DUMMY_DATA.map((item) => {
+      return {
+        id: item.id,
+        lrn: item.lrn,
+        deptName: item.deptName,
+        name: item.name,
+        contactNum: item.contactNum,
+        email: item.email,
         action: 'none',
-      },
-    ],
+      };
+    }),
   });
   return (
     <>

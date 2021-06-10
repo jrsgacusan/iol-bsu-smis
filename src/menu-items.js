@@ -23,6 +23,14 @@ export default {
           icon: 'feather icon-sidebar',
         },
         {
+          id: 'subject',
+          title: 'Manage Subjects',
+          type: 'item',
+          url: '/subject',
+          classes: 'nav-item',
+          icon: 'feather icon-sidebar',
+        },
+        {
           id: 'signin-1',
           title: 'Sign in',
           type: 'item',

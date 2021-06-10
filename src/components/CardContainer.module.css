@@ -1,0 +1,23 @@
+.second-row-header {
+  background: #2cabe3;
+
+  text-align: center;
+  align-items: center;
+  border-bottom: none;
+  position: relative;
+  color: white;
+  height: 100%;
+}
+
+.second-row-header p {
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 830px) {
+  .second-row-header p {
+    display: none;
+  }
+}

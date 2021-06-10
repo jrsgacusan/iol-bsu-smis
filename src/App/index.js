@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 import '../../node_modules/font-awesome/scss/font-awesome.scss';
@@ -14,7 +14,6 @@ const AdminLayout = Loadable({
   loader: () => import('./layout/AdminLayout'),
   loading: Loader,
 });
-
 class App extends Component {
   render() {
     const menu = routes.map((route, index) => {

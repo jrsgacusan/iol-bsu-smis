@@ -5,3 +5,7 @@
 .navbar {
   background: #edf1f5;
 }
+
+a {
+  text-decoration: none;
+}

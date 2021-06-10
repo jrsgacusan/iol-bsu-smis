@@ -2,12 +2,20 @@ import React from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { Card } from 'react-bootstrap';
 
-export default function Datatable({ datatable, title, exportToCsv = false }) {
+export default function Datatable({
+  style,
+  datatable,
+  title = null,
+  exportToCsv = false,
+  className,
+}) {
   return (
-    <Card style={{ border: 'none' }}>
-      <Card.Header>
-        <h4 className="text-center">{title}</h4>
-      </Card.Header>
+    <Card style={style} className={className} style={{ border: 'none' }}>
+      {title !== null && (
+        <Card.Header>
+          <h4 className="text-center">{title}</h4>
+        </Card.Header>
+      )}
       <Card.Body>
         <MDBDataTable
           barReverse
