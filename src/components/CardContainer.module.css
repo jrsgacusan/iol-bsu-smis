@@ -9,6 +9,20 @@
   height: 100%;
 }
 
+.second-row-header::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+  width: 0;
+  height: 0;
+  border: solid transparent;
+  border-width: 10px;
+  border-top-color: #2cabe3;
+  content: '';
+  pointer-events: none;
+}
+
 .second-row-header p {
   margin: 0;
   padding: 0;
