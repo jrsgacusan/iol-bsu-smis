@@ -7,7 +7,7 @@ import { FormControl, Dropdown } from 'react-bootstrap';
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <div
     style={{
-      color: 'black',
+      color: '#gray',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',

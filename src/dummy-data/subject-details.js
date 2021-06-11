@@ -18,7 +18,7 @@ export const SUBJ_DETAILS_DUMMY_DATA = [
     departmentId: '1',
     subject: 'Mathematics',
     subjectDescription: 'Description',
-    offeredTo: 'Grade 7',
+    offeredTo: 'Grade 8',
   },
   {
     id: '14',

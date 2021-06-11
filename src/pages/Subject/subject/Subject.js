@@ -6,8 +6,7 @@ import Datatable from '../../../components/Datatable';
 import { Col, Row, Button } from 'react-bootstrap';
 import { Eye, PencilSquare } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
-import AddNewSchoolYearModal from './AddNewSchoolYearModal';
-import EditSchoolYearModal from './EditSchoolYearModal';
+import SubjectModal from './SubjectModal';
 import DeleteBtnWithAlert from '../../../components/DeleteBtnWithAlert';
 import { SUBJ_DUMMY_DATA } from '../../../dummy-data/subject';
 
@@ -32,10 +31,9 @@ const columns = [
 ];
 
 const Subject = () => {
-  const [isAddNewSyModalShown, setisAddNewSyModalShown] = useState(false);
-  const [isEditSyModalShown, setisEditSyModalShown] = useState(false);
+  const [isModalShown, setisModalShown] = useState(false);
   const [idToEdit, setidToEdit] = useState(null);
-  const [schoolYearToEdit, setschoolYearToEdit] = useState(null);
+  const [schoolYearToEdit, setschoolYearToEdit] = useState('');
   const [dataTable, setDataTable] = useState({
     columns: columns,
     rows: SUBJ_DUMMY_DATA.map((item) => {
@@ -56,7 +54,7 @@ const Subject = () => {
               onClick={() => {
                 setschoolYearToEdit(item.sy);
                 setidToEdit(item.id);
-                setisEditSyModalShown(true);
+                setisModalShown(true);
               }}
             >
               <PencilSquare color="white" />
@@ -74,19 +72,15 @@ const Subject = () => {
 
   return (
     <>
-      <AddNewSchoolYearModal
+      <SubjectModal
         onHide={() => {
-          setisAddNewSyModalShown(false);
+          setschoolYearToEdit('');
+          setidToEdit(null);
+          setisModalShown(false);
         }}
-        isModalShown={isAddNewSyModalShown}
-      />
-      <EditSchoolYearModal
+        isModalShown={isModalShown}
         id={idToEdit}
         schoolYear={schoolYearToEdit}
-        onHide={() => {
-          setisEditSyModalShown(false);
-        }}
-        isModalShown={isEditSyModalShown}
       />
 
       <CardContainer title="SCHOOL YEAR/S">
@@ -96,7 +90,7 @@ const Subject = () => {
             <AddComponent
               title="Add New School Year"
               onClick={() => {
-                setisAddNewSyModalShown(true);
+                setisModalShown(true);
               }}
             />
           </Col>

@@ -1,13 +1,15 @@
 import classes from '../Subject.module.css';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CardContainer from '../../../components/CardContainer';
 import { Row, Col, Button } from 'react-bootstrap';
 import { PencilSquare, Eye } from 'react-bootstrap-icons';
 import DeleteBtnWithAlert from '../../../components/DeleteBtnWithAlert';
 import { SUBJ_DETAILS_DUMMY_DATA } from '../../../dummy-data/subject-details';
-import AddNewSubjectModal from './AddNewSubjectModal';
+import SubjectDetailsModal from './SubjectDetailsModal';
 import AddComponent from '../../../components/AddComponent';
 import Datatable from '../../../components/Datatable';
+import { Link } from 'react-router-dom';
+import { set } from 'date-fns';
 
 const columns = [
   {
@@ -38,9 +40,18 @@ const columns = [
 ];
 
 const SubjectDetails = ({ location }) => {
+  const params = new URLSearchParams(location.search);
+  //states for the query params
   const [sy, setsy] = useState(null);
   const [id, setid] = useState(null);
-  const [isAddSubjModalShown, setisAddSubjModalShown] = useState(false);
+  //state for the add subject model
+  const [isModalShown, setisModalShown] = useState(false);
+  //states for the edit subject modal
+  const [idToEdit, setidToEdit] = useState(null);
+  const [subjToEdit, setsubjToEdit] = useState('');
+  const [descriptionToEdit, setdescriptionToEdit] = useState('');
+  const [offeredToEdit, setofferedToEdit] = useState('');
+  //Data of datatable
   const [datatable, setdatatable] = useState({
     columns: columns,
     rows: SUBJ_DETAILS_DUMMY_DATA.map((datum) => {
@@ -58,14 +69,27 @@ const SubjectDetails = ({ location }) => {
                 deleteRow(datum.id);
               }}
             />
-            <Button title="Edit" variant="success" onClick={() => {}}>
+            <Button
+              title="Edit"
+              variant="success"
+              onClick={() => {
+                setidToEdit(datum.id);
+                setsubjToEdit(datum.subject);
+                setdescriptionToEdit(datum.subjectDescription);
+                setofferedToEdit(datum.offeredTo);
+                setisModalShown(true);
+              }}
+            >
               <PencilSquare color="white" />
             </Button>
-            {/* <Link to="/subject-details?sy=2021&id=1"> */}
-            <Button title="View Subjects" variant="primary">
-              <Eye color="white" />
-            </Button>
-            {/* </Link> */}
+
+            <Link
+              to={`/subject-teachers?id=${datum.id}&sy=${params.get('sy')}`}
+            >
+              <Button title="View Subject Teachers" variant="primary">
+                <Eye color="white" />
+              </Button>
+            </Link>
           </>
         ),
       };
@@ -94,11 +118,19 @@ const SubjectDetails = ({ location }) => {
 
   return (
     <>
-      <AddNewSubjectModal
+      <SubjectDetailsModal
+        id={idToEdit}
+        subjectTitle={subjToEdit}
+        subjectDescription={descriptionToEdit}
+        offeredTo={offeredToEdit}
         onHide={() => {
-          setisAddSubjModalShown(false);
+          setsubjToEdit('');
+          setdescriptionToEdit('');
+          setofferedToEdit('');
+          setidToEdit(null);
+          setisModalShown(false);
         }}
-        isModalShown={isAddSubjModalShown}
+        isModalShown={isModalShown}
       />
       <CardContainer title="SUBJECT/S">
         <Row>
@@ -107,7 +139,7 @@ const SubjectDetails = ({ location }) => {
             <AddComponent
               title="Add New Subject"
               onClick={() => {
-                setisAddSubjModalShown(true);
+                setisModalShown(true);
               }}
             />
           </Col>
