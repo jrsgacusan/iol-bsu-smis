@@ -5,7 +5,7 @@ import { Wallet2 } from 'react-bootstrap-icons';
 
 const CardContainer = ({ title, children }) => {
   return (
-    <Card className={classes['second-row-card']}>
+    <Card style={{ border: 'none' }} className={classes['second-row-card']}>
       <Card.Header
         style={{ background: '#2cabe3' }}
         className={classes['second-row-header']}

@@ -74,10 +74,10 @@ const CustomDropDown = ({
         {selectedItem === null ? placeHolder : selectedItem}
       </Dropdown.Toggle>
 
-      <Dropdown.Menu as={CustomMenu}>
+      <Dropdown.Menu as={CustomMenu} onChange={(e) => console.log(e)}>
         {menuItems.map((item) => {
           return (
-            <Dropdown.Item key={item.id} eventKey={item.name}>
+            <Dropdown.Item key={item.id} eventKey={item.name} value={item}>
               {item.name}
             </Dropdown.Item>
           );
