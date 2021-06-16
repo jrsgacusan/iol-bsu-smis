@@ -17,6 +17,13 @@ const SubjectTeachers = React.lazy(() =>
 const SubjectStudents = React.lazy(() =>
   import('./pages/Subject/subject-students/SubjectStudents')
 );
+const Attendance = React.lazy(() => import('./pages/Attendance/Attendance'));
+const Department = React.lazy(() =>
+  import('./pages/Department/department/Department')
+);
+const DepartmentDetails = React.lazy(() =>
+  import('./pages/Department/department-details/DepartmentDetails')
+);
 
 const routes = [
   { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
@@ -44,6 +51,24 @@ const routes = [
     exact: true,
     name: 'Student Profile',
     component: SubjectStudents,
+  },
+  {
+    path: '/attendance',
+    exact: true,
+    name: 'Attendance',
+    component: Attendance,
+  },
+  {
+    path: '/department',
+    exact: true,
+    name: 'Department',
+    component: Department,
+  },
+  {
+    path: '/department-details',
+    exact: true,
+    name: 'Department Faculty',
+    component: DepartmentDetails,
   },
 ];
 

@@ -1,14 +1,12 @@
 import classes from '../Subject.module.css';
 import React, { useState } from 'react';
 import CardContainer from '../../../components/CardContainer';
-import AddComponent from '../../../components/AddComponent';
 import Datatable from '../../../components/Datatable';
-import { Col, Row, Button } from 'react-bootstrap';
-import { Eye, PencilSquare } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
+import ViewBtn from '../../../components/ViewBtn';
 import SubjectModal from './SubjectModal';
 import DeleteBtnWithAlert from '../../../components/DeleteBtnWithAlert';
 import { SUBJ_DUMMY_DATA } from '../../../dummy-data/subject';
+import EditBtn from '../../../components/EditBtn';
 
 const columns = [
   {
@@ -48,22 +46,14 @@ const Subject = () => {
                 alert('item deleted');
               }}
             />
-            <Button
-              title="Edit"
-              variant="success"
+            <EditBtn
               onClick={() => {
                 setschoolYearToEdit(item.sy);
                 setidToEdit(item.id);
                 setisModalShown(true);
               }}
-            >
-              <PencilSquare color="white" />
-            </Button>
-            <Link to={`/subject-details?sy=${item.sy}&id=${item.id}`}>
-              <Button title="View Subjects" variant="primary">
-                <Eye color="white" />
-              </Button>
-            </Link>
+            />
+            <ViewBtn to={`/subject-details?sy=${item.sy}&id=${item.id}`} />
           </>
         ),
       };
@@ -83,24 +73,17 @@ const Subject = () => {
         schoolYear={schoolYearToEdit}
       />
 
-      <CardContainer title="SCHOOL YEAR/S">
-        <Row>
-          <Col className={classes.div}>
-            <h3>School Year/s Table</h3>
-            <AddComponent
-              title="Add New School Year"
-              onClick={() => {
-                setisModalShown(true);
-              }}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Datatable
-            datatable={dataTable}
-            className={classes['data-table-container']}
-          />
-        </Row>
+      <CardContainer
+        title="SCHOOL YEAR/S"
+        insideTitle="School Year/s Table"
+        isAddComponentPresent={true}
+        addComponentFunction={() => setisModalShown(true)}
+        addComponentTitle="Add New School Year"
+      >
+        <Datatable
+          datatable={dataTable}
+          className={classes['data-table-container']}
+        />
       </CardContainer>
     </>
   );

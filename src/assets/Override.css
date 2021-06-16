@@ -1,3 +1,4 @@
+/* Some override styling */
 .pcoded-main-container {
   background: #edf1f5;
 }
@@ -8,4 +9,29 @@
 
 a {
   text-decoration: none;
+}
+
+/* Override CSS styling for tabs created from React Bootstrap*/
+#uncontrolled-tab-example-tab-faculty:hover,
+#uncontrolled-tab-example-tab-students:hover,
+#uncontrolled-tab-example-tab-deptAdmin:hover,
+#uncontrolled-tab-example-tab-cashier:hover {
+  border: 1px solid #dee2e6;
+  color: unset;
+  border-bottom: unset;
+}
+
+#uncontrolled-tab-example-tab-faculty.nav-item.nav-link.active,
+#uncontrolled-tab-example-tab-students.nav-item.nav-link.active,
+#uncontrolled-tab-example-tab-deptAdmin.nav-item.nav-link.active,
+#uncontrolled-tab-example-tab-cashier.nav-item.nav-link.active {
+  border-top: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+  box-shadow: none;
+}
+
+div.tab-content {
+  padding: 0;
+  box-shadow: none;
 }

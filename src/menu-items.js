@@ -31,6 +31,22 @@ export default {
           icon: 'feather icon-sidebar',
         },
         {
+          id: 'attendance',
+          title: 'Attendance',
+          type: 'item',
+          url: '/attendance',
+          classes: 'nav-item',
+          icon: 'feather icon-sidebar',
+        },
+        {
+          id: 'department',
+          title: 'Department',
+          type: 'item',
+          url: '/department',
+          classes: 'nav-item',
+          icon: 'feather icon-sidebar',
+        },
+        {
           id: 'signin-1',
           title: 'Sign in',
           type: 'item',

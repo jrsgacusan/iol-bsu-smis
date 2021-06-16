@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
-import { Eye, PencilSquare } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
-import AddComponent from '../../../components/AddComponent';
 import CardContainer from '../../../components/CardContainer';
 import Datatable from '../../../components/Datatable';
+import EditBtn from '../../../components/EditBtn';
+import ViewBtn from '../../../components/ViewBtn';
 import DeleteBtnWithAlert from '../../../components/DeleteBtnWithAlert';
 import { SUBJ_TEACHERS_DUMMY_DATA } from '../../../dummy-data/subject-teachers';
 import classes from '../Subject.module.css';
@@ -55,26 +53,17 @@ const SubjectTeachers = ({ location }) => {
         action: (
           <>
             <DeleteBtnWithAlert action={() => {}} />
-            <Button
-              title="Edit"
-              variant="success"
+            <EditBtn
               onClick={() => {
                 setidToEdit(item.id);
-
                 setisAddModalShown(true);
               }}
-            >
-              <PencilSquare color="white" />
-            </Button>
-            <Link
+            />
+            <ViewBtn
               to={`/subject-students?teachersid=${
                 item.teacherId
               }&sy=${params.get('sy')}&subjectid=${item.id}`}
-            >
-              <Button title="View Subjects" variant="primary">
-                <Eye color="white" />
-              </Button>
-            </Link>
+            />
           </>
         ),
       };
@@ -92,24 +81,19 @@ const SubjectTeachers = ({ location }) => {
         menuItems={MENU_ITEMS}
         id={idToEdit}
       />
-      <CardContainer title="SUBJECT TEACHER/S">
-        <Row>
-          <Col className={classes.div}>
-            <h3>{params.get('id')}</h3>
-            <AddComponent
-              title="Add New Subject Teacher"
-              onClick={() => {
-                setisAddModalShown(true);
-              }}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Datatable
-            datatable={datatable}
-            className={classes['data-table-container']}
-          />
-        </Row>
+      <CardContainer
+        title="SUBJECT TEACHER/S"
+        isAddComponentPresent={true}
+        insideTitle={`${params.get('id')}`}
+        addComponentTitle="Add New Subject Teacher"
+        addComponentFunction={() => {
+          setisAddModalShown(true);
+        }}
+      >
+        <Datatable
+          datatable={datatable}
+          className={classes['data-table-container']}
+        />
       </CardContainer>
     </>
   );

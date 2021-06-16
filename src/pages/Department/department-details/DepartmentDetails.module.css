@@ -1,0 +1,15 @@
+.nav-tabs {
+  border-bottom: 1px solid #dee2e6;
+  color: black;
+  margin: 0 3px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.nav-tabs a {
+  margin-right: 4px;
+}
