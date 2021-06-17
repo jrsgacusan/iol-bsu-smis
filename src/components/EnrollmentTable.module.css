@@ -1,0 +1,32 @@
+.table .table-header .approved span {
+  background: #53e69d;
+}
+.table .table-header .pending span {
+  background: #ff7676;
+}
+
+.table .table-header span {
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: white;
+}
+
+.tr-with-data {
+  background: white;
+  border: 2px solid rgba(120, 130, 140, 0.13);
+}
+.tr-with-data td {
+  vertical-align: middle !important;
+}
+
+.tr-no-data {
+  height: 8px;
+}
+
+.table-header tr {
+  border: none;
+}
+
+.table {
+  border: none;
+}

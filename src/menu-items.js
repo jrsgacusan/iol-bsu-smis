@@ -47,6 +47,22 @@ export default {
           icon: 'feather icon-sidebar',
         },
         {
+          id: 'logs',
+          title: 'Audit Logs',
+          type: 'item',
+          url: '/logs',
+          classes: 'nav-item',
+          icon: 'feather icon-sidebar',
+        },
+        {
+          id: 'enrollment',
+          title: 'Enrollment',
+          type: 'item',
+          url: '/enrollmentreg',
+          classes: 'nav-item',
+          icon: 'feather icon-sidebar',
+        },
+        {
           id: 'signin-1',
           title: 'Sign in',
           type: 'item',

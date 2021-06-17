@@ -3,10 +3,10 @@ import { Button } from 'react-bootstrap';
 import { Eye } from 'react-bootstrap-icons';
 
 import { Link } from 'react-router-dom';
-const ViewBtn = ({ to = '#' }) => {
+const ViewBtn = ({ to = '#', title = 'view' }) => {
   return (
     <Link to={to}>
-      <Button title="View Subjects" variant="primary">
+      <Button title={title} variant="primary">
         <Eye color="white" />
       </Button>
     </Link>

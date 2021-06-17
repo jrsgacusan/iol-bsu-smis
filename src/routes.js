@@ -24,6 +24,8 @@ const Department = React.lazy(() =>
 const DepartmentDetails = React.lazy(() =>
   import('./pages/Department/department-details/DepartmentDetails')
 );
+const AuditLogs = React.lazy(() => import('./pages/AuditLogs/AuditLogs'));
+const Enrollment = React.lazy(() => import('./pages/Enrollment/Enrollment'));
 
 const routes = [
   { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
@@ -69,6 +71,18 @@ const routes = [
     exact: true,
     name: 'Department Faculty',
     component: DepartmentDetails,
+  },
+  {
+    path: '/logs',
+    exact: true,
+    name: 'Audit Logs',
+    component: AuditLogs,
+  },
+  {
+    path: '/enrollmentreg',
+    exact: true,
+    name: 'Enrollment',
+    component: Enrollment,
   },
 ];
 

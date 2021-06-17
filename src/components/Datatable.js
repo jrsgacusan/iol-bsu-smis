@@ -49,6 +49,7 @@ export default function Datatable({
       )}
       <Card.Body>
         <MDBDataTable
+          striped={true}
           barReverse
           hover
           entriesOptions={[10, 25, 50, 100]}

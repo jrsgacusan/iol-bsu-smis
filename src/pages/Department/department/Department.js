@@ -54,6 +54,7 @@ const Department = () => {
               }}
             />
             <ViewBtn
+              title="View staff and students"
               to={`/department-details?department_id=${item.deptartmentId}`}
             />
             <DeactivateBtn />
