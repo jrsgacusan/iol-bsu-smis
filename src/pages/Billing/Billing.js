@@ -1,14 +1,14 @@
 import classes from './Billing.module.css';
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
-import { Wallet2, Cash, PlusLg, Trash } from 'react-bootstrap-icons';
+import { Cash } from 'react-bootstrap-icons';
 import CustomDropDown from '../../components/CustomDropDown';
 import BillingModal from './BillingModal';
 import Datatable from '../../components/Datatable';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 // you will need the css that comes with bootstrap@3. if you are using
 // a tool like webpack, you can do the following:
-import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
 // you will also need the css that comes with bootstrap-daterangepicker
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import AddComponent from '../../components/AddComponent';

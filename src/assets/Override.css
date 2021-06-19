@@ -35,3 +35,9 @@ div.tab-content {
   padding: 0;
   box-shadow: none;
 }
+
+/* Vertical align table data */
+table.dataTable tbody th,
+table.dataTable tbody td {
+  vertical-align: middle;
+}

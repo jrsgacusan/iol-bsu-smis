@@ -136,9 +136,7 @@ const DepartmentDetailsModal = ({ onHide, isModalShown, data = null }) => {
               placeholder="Contact Number"
               onChange={contactNumHandler}
               value={contactNum || ''}
-              as="textarea"
               type="text"
-              rows={2}
             />
           </Form.Group>
           <Form.Group>

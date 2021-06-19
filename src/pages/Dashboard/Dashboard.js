@@ -3,7 +3,7 @@ import Datatable from '../../components/Datatable';
 import { Building, People, Clipboard, Wallet } from 'react-bootstrap-icons';
 
 import { Card, Col, Row } from 'react-bootstrap';
-import '../../../src/assets/scss/style.scss';
+// import '../../../src/assets/scss/style.scss';
 import Calendar from './Calendar';
 import classes from './Dashboard.module.css';
 import { DASHBOARD_DUMMY_DATA } from '../../dummy-data/dashboard';

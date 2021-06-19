@@ -6,7 +6,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; //needed for dayClick
 
 import bootstrapPlugin from '@fullcalendar/bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
 
 //Calendar responsive css
 import './Calendar.css';

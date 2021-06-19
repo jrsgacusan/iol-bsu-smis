@@ -47,4 +47,16 @@ export const FACULTY_DUMMY_DATA = [
     role: 'student',
     sy: '2020-2021',
   },
+  {
+    id: '512',
+    firstName: 'Jackie ',
+    midName: 'Super',
+    lastName: 'Chan',
+    contactNum: '0999999999',
+    address: 'Tondo, Chinatown',
+    personToContact: 'None',
+    emergencyNum: '09773237020',
+    role: 'student',
+    sy: '2020-2021',
+  },
 ];
