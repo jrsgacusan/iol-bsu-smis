@@ -28,6 +28,7 @@ const columns = [
   {
     label: 'Person to Contact in case of emergency',
     field: 'personToContact',
+    width: 50,
   },
   {
     label: "Contact Person's Number",
@@ -134,18 +135,17 @@ const Students = ({ list, deleteAction, editAction }) => {
         Students Table
       </Row>
       <Datatable datatable={datatable} />
-      <div style={{ width: '0px', height: '0px', overflow: 'hidden' }}>
-        <StudentDataPDF
-          data={tableData}
-          ref={contentArea}
-          title="BSU SLS"
-          footer="*For students, please create your official gmail account to be
+
+      <StudentDataPDF
+        data={tableData}
+        ref={contentArea}
+        title="BSU SLS"
+        footer="*For students, please create your official gmail account to be
                 used for the google classNameroom. Follow this format:
                 JuanCruz@gmail.com (**Capitalize the first letter of your first
                 name and family name. Do not use any other aliases for us to
                 easily identify you.)"
-        />
-      </div>
+      />
     </>
   );
 };

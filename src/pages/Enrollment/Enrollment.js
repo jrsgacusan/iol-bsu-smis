@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Card, Row, Col, Form, Button } from 'react-bootstrap';
 import { People } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 import EnrollmentTable from '../../components/EnrollmentTable';
 
 const DUMMY_DATA = [
@@ -44,7 +45,11 @@ const Enrollment = () => {
         level: item.level,
         pending: item.pending,
         approved: item.approved,
-        action: <Button variant="primary">Review</Button>,
+        action: (
+          <Link to={`/enrollmentlevel?gradelevel=${item.level}`}>
+            <Button variant="primary">Review</Button>
+          </Link>
+        ),
       };
     })
   );

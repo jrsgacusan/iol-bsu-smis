@@ -1,0 +1,35 @@
+.steamline {
+  position: relative;
+  border-left: 1px solid rgba(120, 130, 140, 0.13);
+  margin-left: 20px;
+}
+
+.steamline .sl-item {
+  border-bottom: 1px solid rgba(120, 130, 140, 0.13);
+  margin: 20px 0;
+}
+
+.steamline .sl-item .sl-left {
+  float: left;
+  margin-left: -20px;
+  z-index: 1;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  height: 40px;
+  border-radius: 100%;
+  color: #fff;
+  background: #53e69d;
+  margin-right: 15px;
+}
+
+.steamline .sl-item .sl-right {
+  padding-left: 50px;
+  font-size: 14px;
+  color: black;
+}
+
+.steamline .sl-item .sl-right .desc {
+  margin-bottom: 30px;
+  font-weight: 700;
+}

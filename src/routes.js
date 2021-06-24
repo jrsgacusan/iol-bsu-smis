@@ -26,6 +26,19 @@ const DepartmentDetails = React.lazy(() =>
 );
 const AuditLogs = React.lazy(() => import('./pages/AuditLogs/AuditLogs'));
 const Enrollment = React.lazy(() => import('./pages/Enrollment/Enrollment'));
+const EnrollmentLevel = React.lazy(() =>
+  import('./pages/Enrollment/EnrollmentLevel')
+);
+const ReviewEnrollment = React.lazy(() =>
+  import('./pages/Enrollment/ReviewEnrollment/ReviewEnrollment')
+);
+const ScheduleFees = React.lazy(() =>
+  import('./pages/ScheduleFees/ScheduleFees')
+);
+const FeesList = React.lazy(() => import('./pages/ScheduleFees/FeesList'));
+const PaymentTransactions = React.lazy(() =>
+  import('./pages/PaymentTransactions/PaymentTransactions')
+);
 
 const routes = [
   { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
@@ -83,6 +96,36 @@ const routes = [
     exact: true,
     name: 'Enrollment',
     component: Enrollment,
+  },
+  {
+    path: '/enrollmentlevel',
+    exact: true,
+    name: 'Enrollment Level',
+    component: EnrollmentLevel,
+  },
+  {
+    path: '/reviewenrollment',
+    exact: true,
+    name: 'Review Enrollment',
+    component: ReviewEnrollment,
+  },
+  {
+    path: '/schedulefees',
+    exact: true,
+    name: 'Schedule of Fees',
+    component: ScheduleFees,
+  },
+  {
+    path: '/fees-list',
+    exact: true,
+    name: 'Fees List',
+    component: FeesList,
+  },
+  {
+    path: '/transaction',
+    exact: true,
+    name: 'Payment Transactions',
+    component: PaymentTransactions,
   },
 ];
 

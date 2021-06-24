@@ -22,32 +22,34 @@ const StudentDataPDF = React.forwardRef(
     ref
   ) => {
     return (
-      <div ref={ref} className={classes['page-container']}>
-        <div className={classes['logo-container']}>
-          <img src={logo} alt={logo} />
-        </div>
-        <div className={classes['title-container']}>
-          <h1>{title}</h1>
-        </div>
-        <div className={classes['table-container']}>
-          <table className={classes.table}>
-            <tbody>
-              <tr>
-                <th colSpan={2} style={{ background: headerColor }} />
-              </tr>
+      <div style={{ width: '0px', height: '0px', overflow: 'hidden' }}>
+        <div ref={ref} className={classes['page-container']}>
+          <div className={classes['logo-container']}>
+            <img src={logo} alt={logo} />
+          </div>
+          <div className={classes['title-container']}>
+            <h1>{title}</h1>
+          </div>
+          <div className={classes['table-container']}>
+            <table className={classes.table}>
+              <tbody>
+                <tr>
+                  <th colSpan={2} style={{ background: headerColor }} />
+                </tr>
 
-              {data.map((item) => {
-                return (
-                  <tr key={item.label}>
-                    <td>{item.label}</td>
-                    <td>{item.data}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                {data.map((item) => {
+                  return (
+                    <tr key={item.label}>
+                      <td>{item.label}</td>
+                      <td>{item.data}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div className={classes.footer}>{footer}</div>
         </div>
-        <div className={classes.footer}>{footer}</div>
       </div>
     );
   }

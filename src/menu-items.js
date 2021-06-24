@@ -63,6 +63,22 @@ export default {
           icon: 'feather icon-sidebar',
         },
         {
+          id: 'schedulefees',
+          title: 'Schedule of Fees',
+          type: 'item',
+          url: '/schedulefees',
+          classes: 'nav-item',
+          icon: 'feather icon-sidebar',
+        },
+        {
+          id: 'transactions',
+          title: 'Payment Transactions',
+          type: 'item',
+          url: '/transaction',
+          classes: 'nav-item',
+          icon: 'feather icon-sidebar',
+        },
+        {
           id: 'signin-1',
           title: 'Sign in',
           type: 'item',

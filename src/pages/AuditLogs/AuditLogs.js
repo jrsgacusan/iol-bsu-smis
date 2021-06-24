@@ -17,7 +17,7 @@ const AuditLogs = () => {
     }),
   });
   return (
-    <CardContainer title="Logs" insideTitle="Logs Table">
+    <CardContainer title="LOGS" insideTitle="Logs Table">
       <Datatable datatable={datatable} />
     </CardContainer>
   );
