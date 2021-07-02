@@ -3,7 +3,8 @@ import { Table } from 'react-bootstrap';
 import classes from './EnrollmentTable.module.css';
 import EnrollmentTableTD from './EnrollmentTableTD';
 
-//data contains level,pending,approved,action
+// Props
+// 'data' = an array of objects. Objects have 'level', 'pending', 'approved', and 'action' properties.
 
 const EnrollmentTable = ({ data }) => {
   return (

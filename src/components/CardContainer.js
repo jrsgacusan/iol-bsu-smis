@@ -4,6 +4,13 @@ import { Card, Row, Col } from 'react-bootstrap';
 import { Wallet2 } from 'react-bootstrap-icons';
 import AddComponent from './AddComponent';
 
+//Props
+// 'title' = the header title
+// 'insideTitle' = the title at the left side of the component, leave null if not applicable.
+// 'isAddComponentPresent' = the component for showing modal sheets, boolean.
+// 'addComponentFunction' = the function executed when the addComponent is clicked.
+// 'addComponentTitle' = the title of the add component
+
 const CardContainer = ({
   title,
   insideTitle,

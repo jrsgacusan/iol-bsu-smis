@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import classes from '../Subject.module.css';
 import React, { useState } from 'react';
 import CardContainer from '../../../components/CardContainer';

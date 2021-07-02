@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Modal, Form, Button, Row, Col } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import CustomModal from '../../../components/CustomModal';

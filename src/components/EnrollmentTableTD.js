@@ -1,5 +1,8 @@
 import React from 'react';
 import classes from './EnrollmentTable.module.css';
+
+// 'item' has level, pending, approved, and action properties.
+
 const EnrollmentTableTD = ({ item }) => {
   return (
     <>

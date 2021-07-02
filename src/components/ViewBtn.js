@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { Eye } from 'react-bootstrap-icons';
 
 import { Link } from 'react-router-dom';
+
 const ViewBtn = ({ to = '#', title = 'view' }) => {
   return (
     <Link to={to}>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { People } from 'react-bootstrap-icons';
@@ -53,28 +54,24 @@ const EnrollmentLevel = ({ location }) => {
   const [datatable, setdatatable] = useState({
     columns: columns,
     rows: ENROLLMENT_LEVEL_DUMMY_DATA.map(function(item) {
-      return (
-        item.yearLevel === params.get('gradelevel') && {
-          enrollmentId: item.enrollmentId,
-          userId: item.userId,
-          name: item.name,
-          age: item.age,
-          section: item.section,
-          yearLevel: item.yearLevel,
-          lastSchool: item.lastSchool,
-          address: item.address,
-          status: item.status,
-          action: (
-            <Link
-              to={`/reviewenrollment?id=${item.userId}&eid=${
-                item.enrollmentId
-              }`}
-            >
-              <Button variant="warning">Review</Button>
-            </Link>
-          ),
-        }
-      );
+      return {
+        enrollmentId: item.enrollmentId,
+        userId: item.userId,
+        name: item.name,
+        age: item.age,
+        section: item.section,
+        yearLevel: item.yearLevel,
+        lastSchool: item.lastSchool,
+        address: item.address,
+        status: item.status,
+        action: (
+          <Link
+            to={`/reviewenrollment?id=${item.userId}&eid=${item.enrollmentId}`}
+          >
+            <Button variant="warning">Review</Button>
+          </Link>
+        ),
+      };
     }),
   });
 

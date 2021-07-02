@@ -5,7 +5,9 @@ import { Trash } from 'react-bootstrap-icons';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
-export const sweetConfirmHandler = (action = null) => {
+//action is the function executed when the confirm action is clicked.
+
+export const sweetConfirmHandler = (action = () => {}) => {
   const MySwal = withReactContent(Swal);
   MySwal.fire({
     title: 'Are you sure?',
@@ -22,6 +24,8 @@ export const sweetConfirmHandler = (action = null) => {
     }
   });
 };
+
+//action is the function executed when the confirm action is clicked.
 
 const DeleteBtnWithAlert = ({ action }) => {
   return (

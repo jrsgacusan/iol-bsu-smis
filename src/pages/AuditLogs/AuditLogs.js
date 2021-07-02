@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import CardContainer from '../../components/CardContainer';
 import Datatable from '../../components/Datatable';

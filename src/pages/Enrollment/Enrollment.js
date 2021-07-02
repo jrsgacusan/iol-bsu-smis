@@ -39,7 +39,7 @@ const DUMMY_DATA = [
 ];
 
 const Enrollment = () => {
-  const [data, setdata] = useState(
+  const [data] = useState(
     DUMMY_DATA.map((item) => {
       return {
         level: item.level,

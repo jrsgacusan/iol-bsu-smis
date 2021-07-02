@@ -12,7 +12,7 @@ export default {
           type: 'item',
           url: '/dashboard',
           classes: 'nav-item',
-          icon: 'feather icon-sidebar',
+          icon: 'feather icon-home',
         },
         {
           id: 'billing',
@@ -20,7 +20,7 @@ export default {
           type: 'item',
           url: '/billing',
           classes: 'nav-item',
-          icon: 'feather icon-sidebar',
+          icon: 'feather icon-credit-card',
         },
         {
           id: 'subject',
@@ -28,7 +28,7 @@ export default {
           type: 'item',
           url: '/subject',
           classes: 'nav-item',
-          icon: 'feather icon-sidebar',
+          icon: 'feather icon-file',
         },
         {
           id: 'attendance',
@@ -36,7 +36,7 @@ export default {
           type: 'item',
           url: '/attendance',
           classes: 'nav-item',
-          icon: 'feather icon-sidebar',
+          icon: 'feather icon-file-text',
         },
         {
           id: 'department',
@@ -44,7 +44,7 @@ export default {
           type: 'item',
           url: '/department',
           classes: 'nav-item',
-          icon: 'feather icon-sidebar',
+          icon: 'feather icon-file', //change this
         },
         {
           id: 'logs',
@@ -52,7 +52,7 @@ export default {
           type: 'item',
           url: '/logs',
           classes: 'nav-item',
-          icon: 'feather icon-sidebar',
+          icon: 'feather icon-file-text',
         },
         {
           id: 'enrollment',
@@ -60,7 +60,7 @@ export default {
           type: 'item',
           url: '/enrollmentreg',
           classes: 'nav-item',
-          icon: 'feather icon-sidebar',
+          icon: 'feather icon-clipboard',
         },
         {
           id: 'schedulefees',
@@ -68,7 +68,7 @@ export default {
           type: 'item',
           url: '/schedulefees',
           classes: 'nav-item',
-          icon: 'feather icon-sidebar',
+          icon: 'feather icon-file', //change this
         },
         {
           id: 'transactions',
@@ -76,7 +76,15 @@ export default {
           type: 'item',
           url: '/transaction',
           classes: 'nav-item',
-          icon: 'feather icon-sidebar',
+          icon: 'feather icon-bar-chart',
+        },
+        {
+          id: 'section',
+          title: 'Manage Section',
+          type: 'item',
+          url: '/section',
+          classes: 'nav-item',
+          icon: 'feather icon-users',
         },
         {
           id: 'signin-1',

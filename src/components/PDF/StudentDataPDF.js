@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classes from './StudentDataPDF.module.css';
 import logo from './bsu_logo.png';
 
@@ -10,6 +10,9 @@ const initValue = [
   { label: 'Name', data: 'Juel Rei S. Gacusan' },
   { label: 'Name', data: 'Juel Rei S. Gacusan' },
 ];
+
+//The "data" prop is an array of objects.
+//The object must contain the keys "label" and "data"
 
 const StudentDataPDF = React.forwardRef(
   (

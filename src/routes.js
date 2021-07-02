@@ -39,6 +39,12 @@ const FeesList = React.lazy(() => import('./pages/ScheduleFees/FeesList'));
 const PaymentTransactions = React.lazy(() =>
   import('./pages/PaymentTransactions/PaymentTransactions')
 );
+const ManageSection = React.lazy(() =>
+  import('./pages/ManageSection/ManageSection')
+);
+const SectionStudents = React.lazy(() =>
+  import('./pages/ManageSection/SectionStudents')
+);
 
 const routes = [
   { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
@@ -126,6 +132,18 @@ const routes = [
     exact: true,
     name: 'Payment Transactions',
     component: PaymentTransactions,
+  },
+  {
+    path: '/section',
+    exact: true,
+    name: 'Manage Section',
+    component: ManageSection,
+  },
+  {
+    path: '/section-students',
+    exact: true,
+    name: 'Section Students',
+    component: SectionStudents,
   },
 ];
 

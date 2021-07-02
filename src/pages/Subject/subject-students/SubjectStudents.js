@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import classes from './SubjectStudents.module.css';
 import React, { useState } from 'react';
 import { Row, Col, Card, Form, Button } from 'react-bootstrap';

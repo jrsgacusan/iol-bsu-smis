@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import classes from './Billing.module.css';
 import React, { useState } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';

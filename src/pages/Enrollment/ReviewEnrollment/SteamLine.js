@@ -5,7 +5,7 @@ const SteamLine = ({ data }) => {
   return (
     <div className={classes.steamline}>
       {data.map((item) => (
-        <div className={classes['sl-item']}>
+        <div key={item.label} className={classes['sl-item']}>
           <div className={`${classes['sl-left']} `}>
             <Person color="white" size={18} />
           </div>

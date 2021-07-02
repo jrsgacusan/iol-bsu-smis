@@ -1,6 +1,13 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 
+// Props
+// 'isModalShown' = boolean value. True to show the modal, false to hide.
+// 'onHide' = the function executed to close the modal.
+// 'title' = title of the modal sheet.
+// 'size' = sm for small, and lg for large.
+// 'isCentered' = true to center vertically and horizontally, false to center horizontally at the upper part.
+
 const CustomModal = ({
   children,
   isModalShown,

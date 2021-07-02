@@ -61,11 +61,19 @@ const CustomMenu = React.forwardRef(
     );
   }
 );
+// Props
+// 'menuItems' = an array of objects. Objects inside must have "name" and "id" keys
+// 'selectedItem' = an object that has a "name" and "id" keys. It is the one set if the user already selected a value from the menu.
+// 'placeHolder' = the text presented in place of a null selectedItem
+// 'handleSelect' = function executed when a menu is selected.
+
+//!!!! Important
+// the eventKey is the value returned in the handleSelect function.
 
 const CustomDropDown = ({
   menuItems,
   handleSelect,
-  selectedItem, //selected item must be an object that has a name and id property
+  selectedItem,
   placeHolder,
 }) => {
   return (

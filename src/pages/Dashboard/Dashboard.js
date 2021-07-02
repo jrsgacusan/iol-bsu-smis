@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Datatable from '../../components/Datatable';
 import { Building, People, Clipboard, Wallet } from 'react-bootstrap-icons';
