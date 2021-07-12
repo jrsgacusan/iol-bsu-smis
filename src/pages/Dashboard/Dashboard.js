@@ -2,12 +2,12 @@
 import React, { useState } from 'react';
 import Datatable from '../../components/Datatable';
 import { Building, People, Clipboard, Wallet } from 'react-bootstrap-icons';
-
 import { Card, Col, Row } from 'react-bootstrap';
 // import '../../../src/assets/scss/style.scss';
 import Calendar from './Calendar';
 import classes from './Dashboard.module.css';
 import { DASHBOARD_DUMMY_DATA } from '../../dummy-data/dashboard';
+import { useSelector } from 'react-redux';
 const columns = [
   {
     label: 'ID',
@@ -48,14 +48,14 @@ const columns = [
 ];
 
 const Dashboard = () => {
+  const students = useSelector((state) => state.students);
   const [departmentCount, setDepartmentCount] = useState(0);
-  const [studentCount, setStudentCount] = useState(0);
   const [facultyCount, setFacultyCount] = useState(0);
   const [bouncedSMS, setBouncedSMS] = useState(0);
   const [outboundSMS, setOutboundSMS] = useState(0);
   const [datatable, setDatatable] = useState({
     columns: columns,
-    rows: DASHBOARD_DUMMY_DATA.map((item) => {
+    rows: students.map((item) => {
       return {
         id: item.id,
         lrn: item.lrn,
@@ -102,7 +102,7 @@ const Dashboard = () => {
                   {/* <i class="fa fa-building text-purple" /> */}
                 </div>
                 <div className="col-3 text-right">
-                  <h2 className="mb-4">{studentCount}</h2>
+                  <h2 className="mb-4">{students.length}</h2>
                 </div>
               </div>
             </Card.Body>

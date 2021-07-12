@@ -8,6 +8,8 @@ import DeleteBtnWithAlert from '../../../components/DeleteBtnWithAlert';
 import { SUBJ_TEACHERS_DUMMY_DATA } from '../../../dummy-data/subject-teachers';
 import classes from '../Subject.module.css';
 import SubjectTeachersModal from './SubjectTeachersModal';
+import { useDispatch } from 'react-redux';
+import * as actionTypes from '../../../store/actions';
 
 const columns = [
   {
@@ -40,9 +42,9 @@ const MENU_ITEMS = [
 ];
 
 const SubjectTeachers = ({ location }) => {
+  const dispatch = useDispatch();
   const params = new URLSearchParams(location.search);
   const [idToEdit, setidToEdit] = useState(null);
-  const [isAddModalShown, setisAddModalShown] = useState(false);
   const [datatable, setdatatable] = useState({
     columns: columns,
     rows: SUBJ_TEACHERS_DUMMY_DATA.map((item) => {
@@ -57,7 +59,7 @@ const SubjectTeachers = ({ location }) => {
             <EditBtn
               onClick={() => {
                 setidToEdit(item.id);
-                setisAddModalShown(true);
+                dispatch({ type: actionTypes.SHOW_MODAL });
               }}
             />
             <ViewBtn
@@ -76,9 +78,7 @@ const SubjectTeachers = ({ location }) => {
       <SubjectTeachersModal
         onhide={() => {
           setidToEdit(null);
-          setisAddModalShown(false);
         }}
-        isModalShown={isAddModalShown}
         menuItems={MENU_ITEMS}
         id={idToEdit}
       />
@@ -88,7 +88,7 @@ const SubjectTeachers = ({ location }) => {
         insideTitle={`${params.get('id')}`}
         addComponentTitle="Add New Subject Teacher"
         addComponentFunction={() => {
-          setisAddModalShown(true);
+          dispatch({ type: actionTypes.SHOW_MODAL });
         }}
       >
         <Datatable

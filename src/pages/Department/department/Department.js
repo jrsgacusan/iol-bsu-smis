@@ -8,6 +8,8 @@ import DeactivateBtn from '../../../components/DeactivateBtn';
 import ViewBtn from '../../../components/ViewBtn';
 import { DEPT_DUMMY_DATA } from '../../../dummy-data/department';
 import DepartmentModal from './DepartmentModal';
+import * as actionTypes from '../../../store/actions';
+import { useDispatch } from 'react-redux';
 
 const columns = [
   {
@@ -33,7 +35,7 @@ const columns = [
 ];
 
 const Department = () => {
-  const [isModalShown, setisModalShown] = useState(false);
+  const dispatch = useDispatch();
   const [id, setid] = useState(null);
   const [departmentName, setdepartmentName] = useState(null);
   const [datatable, setdatatable] = useState({
@@ -51,7 +53,7 @@ const Department = () => {
               onClick={() => {
                 setid(item.deptartmentId);
                 setdepartmentName(item.departmentName);
-                setisModalShown(true);
+                dispatch({ type: actionTypes.SHOW_MODAL });
               }}
             />
             <ViewBtn
@@ -70,11 +72,9 @@ const Department = () => {
       <DepartmentModal
         id={id}
         departmentName={departmentName}
-        isModalShown={isModalShown}
         onHide={() => {
           setid(null);
           setdepartmentName(null);
-          setisModalShown(false);
         }}
       />
       <CardContainer
@@ -82,7 +82,7 @@ const Department = () => {
         insideTitle="Department/s Table"
         isAddComponentPresent={true}
         addComponentFunction={() => {
-          setisModalShown(true);
+          dispatch({ type: actionTypes.SHOW_MODAL });
         }}
         addComponentTitle="Add Department"
       >

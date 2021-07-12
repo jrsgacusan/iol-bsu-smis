@@ -8,6 +8,8 @@ import DeleteBtnWithAlert from '../../../components/DeleteBtnWithAlert';
 import { SUBJ_DETAILS_DUMMY_DATA } from '../../../dummy-data/subject-details';
 import SubjectDetailsModal from './SubjectDetailsModal';
 import Datatable from '../../../components/Datatable';
+import { useDispatch } from 'react-redux';
+import * as actionTypes from '../../../store/actions';
 
 const columns = [
   {
@@ -42,8 +44,10 @@ const SubjectDetails = ({ location }) => {
   //states for the query params
   const [sy, setsy] = useState(null);
   const [id, setid] = useState(null);
-  //state for the add subject model
-  const [isModalShown, setisModalShown] = useState(false);
+
+  //dispatch
+  const dispatch = useDispatch();
+
   //states for the edit subject modal
   const [idToEdit, setidToEdit] = useState(null);
   const [subjToEdit, setsubjToEdit] = useState('');
@@ -73,7 +77,7 @@ const SubjectDetails = ({ location }) => {
                 setsubjToEdit(datum.subject);
                 setdescriptionToEdit(datum.subjectDescription);
                 setofferedToEdit(datum.offeredTo);
-                setisModalShown(true);
+                dispatch({ type: actionTypes.SHOW_MODAL });
               }}
             />
             <ViewBtn
@@ -117,14 +121,12 @@ const SubjectDetails = ({ location }) => {
           setdescriptionToEdit('');
           setofferedToEdit('');
           setidToEdit(null);
-          setisModalShown(false);
         }}
-        isModalShown={isModalShown}
       />
       <CardContainer
         title="SUBJECT/S"
         insideTitle="Subject/s Table"
-        addComponentFunction={() => setisModalShown(true)}
+        addComponentFunction={() => dispatch({ type: actionTypes.SHOW_MODAL })}
         isAddComponentPresent={true}
         addComponentTitle="Add New Subject"
       >

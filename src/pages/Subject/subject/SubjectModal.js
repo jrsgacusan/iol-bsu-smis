@@ -3,7 +3,7 @@ import { Form, Modal, Button, Alert } from 'react-bootstrap';
 import CustomModal from '../../../components/CustomModal';
 import InputMask from 'react-input-mask';
 
-const SubjectModal = ({ isModalShown, onHide, id = null, schoolYear = '' }) => {
+const SubjectModal = ({ onHide, id = null, schoolYear = '' }) => {
   const [currentSchoolYear, setcurrentSchoolYear] = useState('');
 
   useEffect(() => {
@@ -39,8 +39,7 @@ const SubjectModal = ({ isModalShown, onHide, id = null, schoolYear = '' }) => {
   return (
     <CustomModal
       title={id ? 'Update School Year' : 'Add New School Year'}
-      isModalShown={isModalShown}
-      onHide={onHide}
+      customOnHide={onHide}
     >
       <Modal.Body>
         <Form onSubmit={handleSubmit}>

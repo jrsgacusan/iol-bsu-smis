@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+
 import classes from './EnrollmentTable.module.css';
 import EnrollmentTableTD from './EnrollmentTableTD';
 
@@ -14,7 +15,7 @@ const EnrollmentTable = ({ data }) => {
       responsive
       className={classes.table}
     >
-      <thead className={classes['table-header']}>
+      <thead className={`${classes['table-header']}`}>
         <tr>
           <th>Grade Level</th>
           <th className={classes.pending}>

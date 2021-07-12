@@ -6,6 +6,8 @@ import DeleteBtnWithAlert from '../../components/DeleteBtnWithAlert';
 import EditBtn from '../../components/EditBtn';
 import ViewBtn from '../../components/ViewBtn';
 import ManageSectionModal from './ManageSectionModal';
+import * as actionTypes from '../../store/actions';
+import { useDispatch } from 'react-redux';
 
 const columns = [
   { label: 'ID', field: 'id' },
@@ -23,7 +25,7 @@ const rows = [
 ];
 
 const ManageSection = () => {
-  const [isModalShown, setisModalShown] = useState(false);
+  const dispatch = useDispatch();
   const [data, setdata] = useState(null);
   const [datatable, setdatatable] = useState({
     columns: columns,
@@ -42,7 +44,7 @@ const ManageSection = () => {
                   offeredTo: item.gradeLevel,
                   section: item.section,
                 });
-                setisModalShown(true);
+                dispatch({ type: actionTypes.SHOW_MODAL });
               }}
             />
             <ViewBtn
@@ -61,9 +63,7 @@ const ManageSection = () => {
       <ManageSectionModal
         onHide={() => {
           setdata(null);
-          setisModalShown(false);
         }}
-        isModalShown={isModalShown}
         data={data}
       />
       <CardContainer
@@ -71,7 +71,7 @@ const ManageSection = () => {
         isAddComponentPresent={true}
         addComponentTitle="Add New Section"
         addComponentFunction={() => {
-          setisModalShown(true);
+          dispatch({ type: actionTypes.SHOW_MODAL });
         }}
         insideTitle="Section/s"
       >

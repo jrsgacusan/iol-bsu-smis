@@ -24,3 +24,10 @@ export const NAV_CONTENT_LEAVE = 'NAV_CONTENT_LEAVE';
 export const NAV_COLLAPSE_LEAVE = 'NAV_COLLAPSE_LEAVE';
 export const CONFIG_BLOCK = 'CONFIG_BLOCK';
 export const CHANGE_PRE_LAYOUT = 'CHANGE_PRE_LAYOUT';
+//Modifications
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const DARK_MODE = 'CHANGE_MODE';
+export const SET_STUDENTS = 'SET_STUDENTS';
+export const SET_BILLINGS = 'SET_BILLINGS';
+export const ADD_BILLING = 'ADD_BILLING';
+export const REMOVE_BILLING = 'REMOVE_BILLING';

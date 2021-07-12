@@ -8,6 +8,8 @@ import SubjectModal from './SubjectModal';
 import DeleteBtnWithAlert from '../../../components/DeleteBtnWithAlert';
 import { SUBJ_DUMMY_DATA } from '../../../dummy-data/subject';
 import EditBtn from '../../../components/EditBtn';
+import { useDispatch } from 'react-redux';
+import * as actionTypes from '../../../store/actions';
 
 const columns = [
   {
@@ -30,7 +32,7 @@ const columns = [
 ];
 
 const Subject = () => {
-  const [isModalShown, setisModalShown] = useState(false);
+  const dispatch = useDispatch();
   const [idToEdit, setidToEdit] = useState(null);
   const [schoolYearToEdit, setschoolYearToEdit] = useState('');
   const [dataTable, setDataTable] = useState({
@@ -51,7 +53,7 @@ const Subject = () => {
               onClick={() => {
                 setschoolYearToEdit(item.sy);
                 setidToEdit(item.id);
-                setisModalShown(true);
+                dispatch({ type: actionTypes.SHOW_MODAL });
               }}
             />
             <ViewBtn to={`/subject-details?sy=${item.sy}&id=${item.id}`} />
@@ -67,9 +69,7 @@ const Subject = () => {
         onHide={() => {
           setschoolYearToEdit('');
           setidToEdit(null);
-          setisModalShown(false);
         }}
-        isModalShown={isModalShown}
         id={idToEdit}
         schoolYear={schoolYearToEdit}
       />
@@ -78,7 +78,7 @@ const Subject = () => {
         title="SCHOOL YEAR/S"
         insideTitle="School Year/s Table"
         isAddComponentPresent={true}
-        addComponentFunction={() => setisModalShown(true)}
+        addComponentFunction={() => dispatch({ type: actionTypes.SHOW_MODAL })}
         addComponentTitle="Add New School Year"
       >
         <Datatable

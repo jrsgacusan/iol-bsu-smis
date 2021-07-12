@@ -30,3 +30,8 @@
 .table {
   border: none;
 }
+
+.dark {
+  background: #393b3f;
+  transition: 0.5s;
+}

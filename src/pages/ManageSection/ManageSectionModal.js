@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CustomModal from '../../components/CustomModal';
 import { Button, Modal, Form } from 'react-bootstrap';
-const ManageSectionModal = ({ onHide, isModalShown, data = null }) => {
+const ManageSectionModal = ({ onHide, data = null }) => {
   const [currOfferedTo, setcurrOfferedTo] = useState('');
   const [currSection, setcurrSection] = useState('');
 
@@ -33,8 +33,7 @@ const ManageSectionModal = ({ onHide, isModalShown, data = null }) => {
   return (
     <CustomModal
       title={!data ? 'Add New Section' : 'Update Section'}
-      isModalShown={isModalShown}
-      onHide={onHide}
+      customOnHide={onHide}
     >
       <Modal.Body>
         <Form onSubmit={handleSubmit}>

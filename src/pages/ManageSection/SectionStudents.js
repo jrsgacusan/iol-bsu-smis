@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Row, Card, Form, Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import CardContainer from '../../components/CardContainer';
 import Datatable from '../../components/Datatable';
 
@@ -12,6 +13,7 @@ const columns = [
 const rows = [];
 
 const SectionStudents = ({ location }) => {
+  const isDarkMode = useSelector((state) => state.isDarkMode);
   const [datatable, setdatatable] = useState({
     columns: columns,
     rows: rows,
@@ -30,7 +32,7 @@ const SectionStudents = ({ location }) => {
                   style={{
                     fontWeight: 'bold',
                     fontSize: '16px',
-                    color: 'black',
+                    color: `${isDarkMode ? 'white' : 'black'}`,
                   }}
                 >
                   ADD STUDENT
@@ -39,7 +41,10 @@ const SectionStudents = ({ location }) => {
               <Row>
                 <Col
                   className="text-center"
-                  style={{ fontSize: '14px', color: 'black' }}
+                  style={{
+                    fontSize: '14px',
+                    color: `${isDarkMode ? 'white' : 'black'}`,
+                  }}
                 >
                   {/* change the 7-1 with dynamic value soon  */}
                   Section:
@@ -53,7 +58,9 @@ const SectionStudents = ({ location }) => {
                 <Col>
                   <Form>
                     <Form.Group>
-                      <Form.Label style={{ color: 'black' }}>
+                      <Form.Label
+                        style={{ color: `${isDarkMode ? 'white' : 'black'}` }}
+                      >
                         Student's Name
                       </Form.Label>
                       <Form.Control type="text" />

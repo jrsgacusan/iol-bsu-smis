@@ -1,23 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-import {Provider} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './App/index';
 import * as serviceWorker from './serviceWorker';
 import reducer from './store/reducer';
 import config from './config';
+import thunk from 'redux-thunk';
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 const app = (
-    <Provider store={store}>
-        <BrowserRouter basename={config.basename}>
-            {/* basename="/datta-able" */}
-            <App />
-        </BrowserRouter>
-    </Provider>
+  <Provider store={store}>
+    <BrowserRouter basename={config.basename}>
+      {/* basename="/datta-able" */}
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
 
 ReactDOM.render(app, document.getElementById('root'));

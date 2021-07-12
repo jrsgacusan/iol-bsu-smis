@@ -85,7 +85,11 @@ const CustomDropDown = ({
       <Dropdown.Menu as={CustomMenu} onChange={(e) => console.log(e)}>
         {menuItems.map((item) => {
           return (
-            <Dropdown.Item key={item.id} eventKey={item.name} value={item}>
+            <Dropdown.Item
+              key={item.id}
+              eventKey={JSON.stringify(item)}
+              value={item}
+            >
               {item.name}
             </Dropdown.Item>
           );

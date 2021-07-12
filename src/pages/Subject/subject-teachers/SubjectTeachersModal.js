@@ -3,12 +3,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import CustomModal from '../../../components/CustomModal';
 import CustomDropDown from '../../../components/CustomDropDown';
 
-const SubjectTeachersModal = ({
-  onhide,
-  isModalShown,
-  menuItems,
-  id = null,
-}) => {
+const SubjectTeachersModal = ({ onhide, menuItems, id = null }) => {
   const [selectedItem, setselectedItem] = useState(null);
   const handleSelect = (e) => {
     setselectedItem(e);
@@ -22,14 +17,14 @@ const SubjectTeachersModal = ({
     } else {
       //Edit mode
       console.log('Edit Mode');
+      console.log(id);
     }
   }
 
   return (
     <CustomModal
       title={id ? 'Edit Subject Teacjer' : 'Add Subject Teacher'}
-      onHide={onhide}
-      isModalShown={isModalShown}
+      customOnHide={onhide}
     >
       <Modal.Body>
         <Form onSubmit={handleSubmit}>

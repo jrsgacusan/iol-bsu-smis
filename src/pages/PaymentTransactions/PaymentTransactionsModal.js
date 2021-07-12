@@ -1,13 +1,9 @@
 import React from 'react';
 import CustomModal from '../../components/CustomModal';
 import { Form, Modal, Button } from 'react-bootstrap';
-const PaymentTransactionsModal = ({ isModalShown, onHide }) => {
+const PaymentTransactionsModal = () => {
   return (
-    <CustomModal
-      isModalShown={isModalShown}
-      onHide={onHide}
-      title="Transaction ID"
-    >
+    <CustomModal title="Transaction ID">
       <Modal.Body>
         <Form>
           <Form.Group>

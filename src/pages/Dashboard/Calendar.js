@@ -11,25 +11,22 @@ import bootstrapPlugin from '@fullcalendar/bootstrap';
 //Calendar responsive css
 import './Calendar.css';
 import DashboardModal from './DashboardModal';
+import { useDispatch } from 'react-redux';
 
 //Value validator for the input fields
 
+import * as actionTypes from '../../store/actions';
+
 const Calendar = () => {
   const [eventDate, setEventDate] = useState('');
-  const [isModalShown, setisModalShown] = useState(false);
-
+  const dispatch = useDispatch();
   const handleDateClick = (e) => {
     setEventDate(e.dateStr);
-    setisModalShown(true);
+    dispatch({ type: actionTypes.SHOW_MODAL });
   };
-
   return (
     <>
-      <DashboardModal
-        onHide={() => setisModalShown(false)}
-        isModalShown={isModalShown}
-        eventDate={eventDate}
-      />
+      <DashboardModal eventDate={eventDate} />
 
       <Card style={{ border: 'none' }}>
         <Card.Body>

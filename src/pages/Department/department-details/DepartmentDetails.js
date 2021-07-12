@@ -9,6 +9,8 @@ import Cashier from './cashier/Cashier';
 
 import { sweetConfirmHandler } from '../../../components/DeleteBtnWithAlert';
 import { FACULTY_DUMMY_DATA } from '../../../dummy-data/department-details';
+import * as actionTypes from '../../../store/actions';
+import { useDispatch } from 'react-redux';
 
 const initialValue = {
   id: '',
@@ -23,15 +25,17 @@ const initialValue = {
 };
 
 const DepartmentDetails = () => {
-  const [isModalShown, setisModalShown] = useState(false);
+  const dispatch = useDispatch();
+
   const [data, setData] = useState(initialValue);
 
   const showModal = () => {
-    setisModalShown(true);
+    dispatch({ type: actionTypes.SHOW_MODAL });
   };
+
   const editAction = (data) => {
     setData(data);
-    setisModalShown(true);
+    showModal();
     console.log(data);
   };
 
@@ -48,10 +52,8 @@ const DepartmentDetails = () => {
       <DepartmentDetailsModal
         data={data}
         onHide={() => {
-          setisModalShown(false);
           setData(initialValue);
         }}
-        isModalShown={isModalShown}
       />
       <Row>
         <Col>

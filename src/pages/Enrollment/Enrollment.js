@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { Card, Row, Col, Form, Button } from 'react-bootstrap';
 import { People } from 'react-bootstrap-icons';
+import { useSelector } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 import EnrollmentTable from '../../components/EnrollmentTable';
 
@@ -39,6 +41,7 @@ const DUMMY_DATA = [
 ];
 
 const Enrollment = () => {
+  const isDarkMode = useSelector((state) => state.isDarkMode);
   const [data] = useState(
     DUMMY_DATA.map((item) => {
       return {
@@ -129,7 +132,9 @@ const Enrollment = () => {
                 </Col>
               </Row>
             </Card.Body>
-            <Card.Footer style={{ background: '#F7FAFC' }}>
+            <Card.Footer
+              style={{ background: `${isDarkMode ? '#2d2f31' : '#F7FAFC'}` }}
+            >
               <EnrollmentTable data={data} />
             </Card.Footer>
           </Card>

@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CustomModal from '../../components/CustomModal';
 import { Modal, Form, Button } from 'react-bootstrap';
-const ScheduleFeesModal = ({
-  isModalShown,
-  onHide,
-  id = null,
-  gradeLevel = '',
-}) => {
+const ScheduleFeesModal = ({ onHide, id = null, gradeLevel = '' }) => {
   const [currGradeLevel, setcurrGradeLevel] = useState('');
   useEffect(() => {
     setcurrGradeLevel(gradeLevel);
@@ -26,8 +21,7 @@ const ScheduleFeesModal = ({
 
   return (
     <CustomModal
-      isModalShown={isModalShown}
-      onHide={onHide}
+      customOnHide={onHide}
       title={!id ? 'Add New Grade Level' : 'Edit Grade Level'}
     >
       <Modal.Body>

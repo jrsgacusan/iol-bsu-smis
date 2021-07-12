@@ -4,6 +4,8 @@ import CardContainer from '../../components/CardContainer';
 import Datatable from '../../components/Datatable';
 import DeleteBtnWithAlert from '../../components/DeleteBtnWithAlert';
 import PaymentTransactionsModal from './PaymentTransactionsModal';
+import * as actionTypes from '../../store/actions';
+import { useDispatch } from 'react-redux';
 
 const columns = [
   {
@@ -33,7 +35,7 @@ const rows = [
 ];
 
 const PaymentTransactions = () => {
-  const [isModalShown, setisModalShown] = useState(false);
+  const dispatch = useDispatch();
   const [datatable, setdatatable] = useState({
     columns: columns,
     rows: rows.map((item) => {
@@ -53,19 +55,14 @@ const PaymentTransactions = () => {
 
   return (
     <>
-      <PaymentTransactionsModal
-        isModalShown={isModalShown}
-        onHide={() => {
-          setisModalShown(false);
-        }}
-      />
+      <PaymentTransactionsModal />
       <CardContainer
         title="PAYMENT TRANSACTIONS"
         isAddComponentPresent={true}
         addComponentTitle="Add New Transaction"
         insideTitle="Transaction Table"
         addComponentFunction={() => {
-          setisModalShown(true);
+          dispatch({ type: actionTypes.SHOW_MODAL });
         }}
       >
         <Datatable datatable={datatable} />

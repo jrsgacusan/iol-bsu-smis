@@ -2,12 +2,7 @@ import { Modal, Form, Button } from 'react-bootstrap';
 import React, { useState } from 'react';
 import CustomModal from '../../../components/CustomModal';
 
-const DepartmentModal = ({
-  onHide,
-  isModalShown,
-  id = null,
-  departmentName,
-}) => {
+const DepartmentModal = ({ onHide, id = null, departmentName }) => {
   const [currentDeptName, setcurrentDeptName] = useState('');
 
   const onChangeHandler = (e) => {
@@ -29,8 +24,7 @@ const DepartmentModal = ({
   return (
     <CustomModal
       title={!id ? 'Add New Department' : 'Edit Department Information'}
-      isModalShown={isModalShown}
-      onHide={onHide}
+      customOnHide={onHide}
     >
       <Modal.Body>
         <Form onSubmit={onSubmitHandler}>

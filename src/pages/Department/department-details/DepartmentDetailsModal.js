@@ -12,7 +12,7 @@ const validateValue = (value) => value.trim() !== '';
 const validateNum = (value) => value.length !== 11;
 const validateSy = (value) => value.trim().length !== 9;
 
-const DepartmentDetailsModal = ({ onHide, isModalShown, data = null }) => {
+const DepartmentDetailsModal = ({ onHide, data = null }) => {
   const isNull = data.id === '';
 
   const [idNumber, setIdNumber] = useState('');
@@ -69,8 +69,7 @@ const DepartmentDetailsModal = ({ onHide, isModalShown, data = null }) => {
   return (
     <CustomModal
       size="lg"
-      onHide={onHide}
-      isModalShown={isModalShown}
+      customOnHide={onHide}
       title={isNull ? 'New Faculty/Student' : 'Update Faculty/Student'}
     >
       <Modal.Body>

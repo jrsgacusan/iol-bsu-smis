@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import classes from './Billing.module.css';
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Cash } from 'react-bootstrap-icons';
 import CustomDropDown from '../../components/CustomDropDown';
@@ -16,6 +16,9 @@ import AddComponent from '../../components/AddComponent';
 import CardContainer from '../../components/CardContainer';
 import { BILLING_DUMMY_DATA } from '../../dummy-data/billing';
 import DeleteBtnWithAlert from '../../components/DeleteBtnWithAlert';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actionTypes from '../../store/actions';
+import { deleteBilling } from '../../store/actions-thunk';
 
 const DUMMY_MENU = [
   {
@@ -72,33 +75,72 @@ const columns = [
 ];
 
 const Billing = () => {
+  const billings = useSelector((state) => state.billings);
+  const students = useSelector((state) => state.students);
+  const dispatch = useDispatch();
   const [collected, setcollected] = useState(1000000);
   const [collectibles, setcollectibles] = useState(2000000);
-  const [menuItems, setmenuItems] = useState(DUMMY_MENU);
+  const [menuItems, setmenuItems] = useState(
+    students.map((student) => {
+      return {
+        name: student.name,
+        id: student.id,
+      };
+    })
+  );
   const [selectedStudent, setSelectedStudent] = useState(null);
-  const [isModalShown, setisModalShown] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
   const [isTableShown, setisTableShown] = useState(false);
   const [startDate, setstartDate] = useState('01-01-2021');
   const [endDate, setendDate] = useState('01-01-2021');
   const [dataTable, setDataTable] = useState({
     columns: columns,
-    rows: BILLING_DUMMY_DATA.map((item) => {
-      return {
-        paymentId: item.paymentId,
-        date: item.date,
-        studentId: item.studentId,
-        transactionType: item.transactionType,
-        description: item.description,
-        amount: item.amount,
-        balance: item.balance,
-        action: <DeleteBtnWithAlert action={() => alert('Perform delete')} />,
-      };
-    }),
+    rows: [],
   });
 
+  const transformRow = useCallback(
+    (list) => {
+      const rows = list.map((item) => {
+        return {
+          paymentId: item.paymentId,
+          date: item.date,
+          studentId: item.studentId,
+          transactionType: item.transactionType,
+          description: item.description,
+          amount: item.amount,
+          balance: item.balance,
+          action: (
+            <DeleteBtnWithAlert
+              action={() => {
+                dispatch(deleteBilling(item.paymentId));
+              }}
+            />
+          ),
+        };
+      });
+      return rows;
+    },
+    [dispatch]
+  );
+
+  useEffect(() => {
+    const filteredBillings = billings.filter(
+      (billing) => billing.studentId === selectedId
+    );
+    setDataTable({ columns, rows: transformRow(filteredBillings) });
+  }, [billings, selectedId, transformRow]);
+
   const handleSelect = (e) => {
-    setSelectedStudent(e);
-    console.log(e);
+    const selectedItem = JSON.parse(e); //the id in this object will be used to fetch the billing transactions
+    const name = selectedItem.name;
+    const id = selectedItem.id;
+    setSelectedId(id);
+    setSelectedStudent(name);
+    const filteredBillings = billings.filter(
+      (billing) => billing.studentId === id
+    );
+    console.log(filteredBillings);
+    setDataTable({ columns, rows: transformRow(filteredBillings) });
   };
 
   const handleCallback = (start, end, label) => {
@@ -110,13 +152,7 @@ const Billing = () => {
 
   return (
     <>
-      <BillingModal
-        onHide={() => {
-          setisModalShown(false);
-        }}
-        isModalShown={isModalShown}
-        menuItems={menuItems}
-      />
+      <BillingModal menuItems={menuItems} />
 
       {/* First row */}
       <Row>
@@ -225,7 +261,7 @@ const Billing = () => {
                 <AddComponent
                   title="Add New Transaction"
                   onClick={() => {
-                    setisModalShown(true);
+                    dispatch({ type: actionTypes.SHOW_MODAL });
                   }}
                 />
               </Col>

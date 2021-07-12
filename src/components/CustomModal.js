@@ -1,26 +1,34 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Props
-// 'isModalShown' = boolean value. True to show the modal, false to hide.
-// 'onHide' = the function executed to close the modal.
+
+// 'customOnHide' = extra function executed whenever the modal is closed.
 // 'title' = title of the modal sheet.
 // 'size' = sm for small, and lg for large.
 // 'isCentered' = true to center vertically and horizontally, false to center horizontally at the upper part.
 
+import * as actionTypes from '../store/actions';
+
 const CustomModal = ({
   children,
-  isModalShown,
-  onHide,
   title = null,
   size,
   isCentered = false,
+  customOnHide = () => {},
 }) => {
+  const isModalShown = useSelector((state) => state.isModalShown);
+  const dispatch = useDispatch();
+
   return (
     <Modal
       size={size === '' || size === null ? '' : size}
       show={isModalShown}
-      onHide={onHide}
+      onHide={() => {
+        customOnHide();
+        dispatch({ type: actionTypes.SHOW_MODAL });
+      }}
       centered={isCentered}
     >
       {title !== null && (

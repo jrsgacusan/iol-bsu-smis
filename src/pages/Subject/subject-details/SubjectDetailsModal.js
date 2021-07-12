@@ -4,7 +4,6 @@ import CustomModal from '../../../components/CustomModal';
 
 const SubjectDetailsModal = ({
   onHide,
-  isModalShown,
   subjectTitle = '',
   subjectDescription = '',
   offeredTo = '',
@@ -41,8 +40,7 @@ const SubjectDetailsModal = ({
 
   return (
     <CustomModal
-      isModalShown={isModalShown}
-      onHide={onHide}
+      customOnHide={onHide}
       title={!id ? 'Add New Subject' : 'Update Subject'}
     >
       <Modal.Body>

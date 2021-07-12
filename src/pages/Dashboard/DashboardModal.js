@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Form, Alert, Modal, Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import CustomModal from '../../components/CustomModal';
 import useInput from '../../hooks/use-input';
+import * as actionTypes from '../../store/actions';
 
 //Helper function
 const validateValue = (value) => value.trim() !== '';
 
-const DashboardModal = ({ onHide, isModalShown, eventDate }) => {
+const DashboardModal = ({ eventDate }) => {
+  const dispatch = useDispatch();
   const {
     value: enteredEventName,
     isValid: eventNameIsValid,
@@ -31,7 +34,6 @@ const DashboardModal = ({ onHide, isModalShown, eventDate }) => {
       `Event date:${eventDate} \nEvent name: ${enteredEventName}\nGrade level: ${selectedGradeLevel}`
     );
     console.log('Creating the event...');
-    onHide();
     resetEnteredEventName();
     setselectedGradeLevel('7');
   };
@@ -40,12 +42,7 @@ const DashboardModal = ({ onHide, isModalShown, eventDate }) => {
   };
 
   return (
-    <CustomModal
-      title="Add Event"
-      onHide={onHide}
-      size="lg"
-      isModalShown={isModalShown}
-    >
+    <CustomModal title="Add Event" size="lg">
       <Modal.Body>
         <Form>
           {eventNameHasError && (
@@ -82,7 +79,12 @@ const DashboardModal = ({ onHide, isModalShown, eventDate }) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onHide}>
+        <Button
+          variant="secondary"
+          onClick={() => {
+            dispatch({ type: actionTypes.SHOW_MODAL });
+          }}
+        >
           Close
         </Button>
         <Button variant="success" type="submit" onClick={handleCreateEvent}>

@@ -1,7 +1,10 @@
 import React from 'react';
 import classes from './SteamLine.module.css';
 import { Person } from 'react-bootstrap-icons';
+import { useSelector } from 'react-redux';
 const SteamLine = ({ data }) => {
+  const isDarkMode = useSelector((state) => state.isDarkMode);
+
   return (
     <div className={classes.steamline}>
       {data.map((item) => (
@@ -10,7 +13,10 @@ const SteamLine = ({ data }) => {
             <Person color="white" size={18} />
           </div>
 
-          <div className={classes['sl-right']}>
+          <div
+            style={{ color: `${isDarkMode ? 'white' : 'black'}` }}
+            className={classes['sl-right']}
+          >
             <div>{item.label}</div>
             <div className={classes.desc}>{item.data}</div>
           </div>

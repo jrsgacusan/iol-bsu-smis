@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
-import { Form, Modal, Button } from 'react-bootstrap';
+import { Form, Modal, Button, Alert } from 'react-bootstrap';
 import CustomModal from '../../components/CustomModal';
 import CustomDropDown from '../../components/CustomDropDown';
+import { useDispatch } from 'react-redux';
+import { addBilling } from '../../store/actions-thunk';
+import * as actionTypes from '../../store/actions';
 
-const BillingModal = ({ isModalShown, onHide, menuItems }) => {
+const BillingModal = ({ menuItems }) => {
+  const dispatch = useDispatch();
   const [selectedStudentInModal, setselectedStudentInModal] = useState(null);
   const [selectedRadio, setselectedRadio] = useState('billing');
+  const [numOrDescription, setnumOrDescription] = useState('');
+  const [amount, setamount] = useState(0);
+  const [id, setid] = useState(null);
+  const [error, seterror] = useState(false);
+  const [errorMessage, seterrorMessage] = useState('');
 
   const handleSelect = (e) => {
-    setselectedStudentInModal(e);
-    console.log(e);
+    const selectedItem = JSON.parse(e); //the id in this object will be used to fetch the billing transactions
+    const name = selectedItem.name;
+    const id = selectedItem.id;
+    setselectedStudentInModal(name);
+    setid(id);
   };
 
   const handleRadioOnChange = (e) => {
@@ -17,14 +29,68 @@ const BillingModal = ({ isModalShown, onHide, menuItems }) => {
     setselectedRadio(e.currentTarget.id);
   };
 
+  const handleOrDesc = (e) => {
+    setnumOrDescription(e.target.value);
+  };
+  const handleAmount = (e) => {
+    setamount(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    seterror(false);
+
+    if (!id) {
+      seterror(true);
+      seterrorMessage('Please select a student.');
+      return;
+    }
+    if (amount <= 0) {
+      seterror(true);
+      seterrorMessage('Amount must be higher than 0.');
+      return;
+    }
+    //no error
+    let current = new Date();
+    let cDate =
+      current.getFullYear() +
+      '-' +
+      (current.getMonth() + 1) +
+      '-' +
+      current.getDate();
+    let cTime =
+      current.getHours() +
+      ':' +
+      current.getMinutes() +
+      ':' +
+      current.getSeconds();
+    let dateTime = cDate + ' ' + cTime;
+
+    const data = {
+      amount: amount,
+      date: dateTime,
+      description: numOrDescription,
+      balance: 1000000,
+      studentId: id,
+      transactionType: selectedRadio,
+    };
+
+    dispatch(addBilling(data));
+    customOnHide();
+    dispatch({ type: actionTypes.SHOW_MODAL });
+  };
+  const customOnHide = () => {
+    setselectedStudentInModal(null);
+    setselectedRadio('billing');
+    setnumOrDescription('');
+    setamount(0);
+    setid(null);
+  };
+
   return (
-    <CustomModal
-      isModalShown={isModalShown}
-      onHide={onHide}
-      title="Add New Billing"
-    >
+    <CustomModal title="Add New Billing" customOnHide={customOnHide}>
       <Modal.Body>
-        <Form>
+        <Form onSubmit={handleSubmit}>
+          {error && <Alert variant="danger">{errorMessage}</Alert>}
           <Form.Group>
             <Form.Label style={{ fontWeight: 'bold' }}>Student</Form.Label>
             <CustomDropDown
@@ -70,19 +136,26 @@ const BillingModal = ({ isModalShown, onHide, menuItems }) => {
                   : 'OR Number'
               }
               type="text"
+              value={numOrDescription}
+              onChange={handleOrDesc}
+              required
             />
           </Form.Group>
           <Form.Group>
             <Form.Label style={{ fontWeight: 'bold' }}>Amount</Form.Label>
-            <Form.Control type="number" placeholder="Amount" />
+            <Form.Control
+              type="number"
+              placeholder="Amount"
+              value={amount}
+              onChange={handleAmount}
+              required
+            />
           </Form.Group>
+          <Button variant="success" type="submit">
+            Save
+          </Button>
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="success" type="submit" onClick={() => {}}>
-          Save
-        </Button>
-      </Modal.Footer>
     </CustomModal>
   );
 };

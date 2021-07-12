@@ -6,6 +6,8 @@ import DeleteBtnWithAlert from '../../components/DeleteBtnWithAlert';
 import EditBtn from '../../components/EditBtn';
 import ViewBtn from '../../components/ViewBtn';
 import ScheduleFeesModal from './ScheduleFeesModal';
+import * as actionTypes from '../../store/actions';
+import { useDispatch } from 'react-redux';
 
 const columns = [
   { label: 'ID', field: 'id' },
@@ -15,7 +17,7 @@ const columns = [
 const rows = [{ id: '000001', level: 'Grade 7' }];
 
 const ScheduleFees = () => {
-  const [isModalShown, setisModalShown] = useState(false);
+  const dispatch = useDispatch();
   const [id, setid] = useState(null);
   const [gradeLevel, setgradeLevel] = useState('');
   const [datatable, setdatatable] = useState({
@@ -31,7 +33,7 @@ const ScheduleFees = () => {
               onClick={() => {
                 setid(item.id);
                 setgradeLevel(item.level);
-                setisModalShown(true);
+                dispatch({ type: actionTypes.SHOW_MODAL });
               }}
             />
             <ViewBtn
@@ -47,9 +49,7 @@ const ScheduleFees = () => {
   return (
     <>
       <ScheduleFeesModal
-        isModalShown={isModalShown}
         onHide={() => {
-          setisModalShown(false);
           setid(null);
           setgradeLevel('');
         }}
@@ -63,7 +63,7 @@ const ScheduleFees = () => {
         isAddComponentPresent={true}
         addComponentTitle="Add New Grade Level"
         addComponentFunction={() => {
-          setisModalShown(true);
+          dispatch({ type: actionTypes.SHOW_MODAL });
         }}
       >
         <Datatable datatable={datatable} />
