@@ -10,7 +10,11 @@ import ScrollToTop from './layout/ScrollToTop';
 import routes from '../route';
 import '../assets/Override.css';
 import { useDispatch } from 'react-redux';
-import { fetchStudents, fetchBillings } from '../store/actions-thunk';
+import {
+  fetchStudents,
+  fetchBillings,
+  fetchEvents,
+} from '../store/actions-thunk';
 
 const AdminLayout = Loadable({
   loader: () => import('./layout/AdminLayout'),
@@ -22,10 +26,8 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchBillings());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(fetchStudents());
+    dispatch(fetchEvents());
   }, [dispatch]);
 
   const menu = routes.map((route, index) => {

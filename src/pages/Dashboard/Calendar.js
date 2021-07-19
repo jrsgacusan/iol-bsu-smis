@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -11,22 +11,24 @@ import bootstrapPlugin from '@fullcalendar/bootstrap';
 //Calendar responsive css
 import './Calendar.css';
 import DashboardModal from './DashboardModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 //Value validator for the input fields
 
 import * as actionTypes from '../../store/actions';
 
 const Calendar = () => {
-  const [eventDate, setEventDate] = useState('');
+  const events = useSelector((state) => state.events);
+  const [calendarInfo, setcalendarInfo] = useState(null);
   const dispatch = useDispatch();
-  const handleDateClick = (e) => {
-    setEventDate(e.dateStr);
+  const handleDateSelect = (selectInfo) => {
+    setcalendarInfo(selectInfo);
     dispatch({ type: actionTypes.SHOW_MODAL });
   };
+
   return (
     <>
-      <DashboardModal eventDate={eventDate} />
+      <DashboardModal selectInfo={calendarInfo} />
 
       <Card style={{ border: 'none' }}>
         <Card.Body>
@@ -42,7 +44,8 @@ const Calendar = () => {
               handleWindowResize={false}
               initialView="dayGridMonth"
               themeSystem="bootstrap"
-              dateClick={handleDateClick}
+              initialEvents={events}
+              select={handleDateSelect}
               selectable={true}
               editable={true}
               headerToolbar={{

@@ -8,7 +8,7 @@ import * as actionTypes from '../../store/actions';
 //Helper function
 const validateValue = (value) => value.trim() !== '';
 
-const DashboardModal = ({ eventDate }) => {
+const DashboardModal = ({ selectInfo }) => {
   const dispatch = useDispatch();
   const {
     value: enteredEventName,
@@ -26,16 +26,26 @@ const DashboardModal = ({ eventDate }) => {
   }
 
   //Create event handler
-  const handleCreateEvent = () => {
+  const handleCreateEvent = (e) => {
+    e.preventDefault();
     if (!formIsValid) {
       return;
     }
-    console.log(
-      `Event date:${eventDate} \nEvent name: ${enteredEventName}\nGrade level: ${selectedGradeLevel}`
-    );
+
     console.log('Creating the event...');
     resetEnteredEventName();
     setselectedGradeLevel('7');
+
+    let calendarApi = selectInfo.view.calendar;
+    calendarApi.unselect(); // clear date selection
+    calendarApi.addEvent({
+      id: Math.random,
+      title: `${enteredEventName} for Grade ${selectedGradeLevel}.`,
+      start: selectInfo.startStr,
+      end: selectInfo.endStr,
+      allDay: selectInfo.allDay,
+    });
+    dispatch({ type: actionTypes.SHOW_MODAL });
   };
   const handleDeleteEvent = () => {
     console.log('Deleting an event...');
@@ -76,24 +86,22 @@ const DashboardModal = ({ eventDate }) => {
               <option>12</option>
             </Form.Control>
           </Form.Group>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              dispatch({ type: actionTypes.SHOW_MODAL });
+            }}
+          >
+            Close
+          </Button>
+          <Button variant="success" type="submit" onClick={handleCreateEvent}>
+            Create Event
+          </Button>
+          <Button variant="danger" onClick={handleDeleteEvent}>
+            Delete
+          </Button>
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button
-          variant="secondary"
-          onClick={() => {
-            dispatch({ type: actionTypes.SHOW_MODAL });
-          }}
-        >
-          Close
-        </Button>
-        <Button variant="success" type="submit" onClick={handleCreateEvent}>
-          Create Event
-        </Button>
-        <Button variant="danger" onClick={handleDeleteEvent}>
-          Delete
-        </Button>
-      </Modal.Footer>
     </CustomModal>
   );
 };

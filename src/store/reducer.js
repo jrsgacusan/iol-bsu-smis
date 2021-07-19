@@ -10,6 +10,7 @@ const initialState = {
   isDarkMode: false, //by default it is in light mode
   students: [],
   billings: [],
+  events: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -264,7 +265,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         billings: updated,
       };
-
+    case actionTypes.SET_EVENTS:
+      return {
+        ...state,
+        events: action.data,
+      };
     default:
       return state;
   }

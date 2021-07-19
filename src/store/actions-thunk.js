@@ -110,3 +110,35 @@ export const deleteBilling = (id) => {
     await deleteData();
   };
 };
+
+export const fetchEvents = () => {
+  return async (dispatch) => {
+    const fetch = async () => {
+      const response = await axios.get(`${DUMMY_API_DOMAIN}/events.json`);
+
+      return response.data;
+    };
+
+    try {
+      const data = await fetch();
+      console.log(data);
+
+      let events = [];
+
+      for (const key in data) {
+        events.push({
+          id: key,
+          title: data[key].title,
+          start: data[key].start,
+          end: data[key].end,
+          allDay: data[key].allDay,
+        });
+      }
+
+      dispatch({ type: actionTypes.SET_EVENTS, data: events });
+    } catch (err) {
+      console.log(err);
+      console.log('There is a problem.');
+    }
+  };
+};

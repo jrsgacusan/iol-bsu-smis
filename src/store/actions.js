@@ -31,3 +31,4 @@ export const SET_STUDENTS = 'SET_STUDENTS';
 export const SET_BILLINGS = 'SET_BILLINGS';
 export const ADD_BILLING = 'ADD_BILLING';
 export const REMOVE_BILLING = 'REMOVE_BILLING';
+export const SET_EVENTS = 'SET_EVENTS';
